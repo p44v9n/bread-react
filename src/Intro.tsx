@@ -1,6 +1,6 @@
 import "./App.css";
-import { Drawer } from "vaul";
-import { PlayCircle } from "lucide-react";
+// import { Drawer } from "vaul";
+// import { PlayCircle } from "lucide-react";
 
 export default function Intro() {
   // const [count, setCount] = useState(0)

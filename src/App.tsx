@@ -2,15 +2,15 @@
 // import reactLogo from './assets/react.svg'
 import brid from './assets/bread.svg'
 import './App.css'
-import { MouseEventHandler, useState } from "react";
+import { useState } from "react";
 // import { Drawer } from 'vaul'
 import { Button } from '@/components/ui/button'
 import Step1 from './Step1' 
 import Intro from './Intro' 
 
-const currentStep = 0;
+// const currentStep = 0;
 
-function App(props: { setStep: MouseEventHandler<HTMLButtonElement> | undefined; }) {
+function App() {
   const [step, setStep] = useState(0); //step, setter, initial state
   
   function click() {
