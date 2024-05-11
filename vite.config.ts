@@ -5,6 +5,14 @@ import path from "path"
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/",
+  build: {
+    outDir: "./dist",
+    minify: false,
+    commonjsOptions: {
+      include: [/linked-dep/, /node_modules/],
+    },
+  },
   plugins: [react()],
   resolve: {
     alias: {
@@ -16,4 +24,8 @@ export default defineConfig({
       plugins: [tailwindcss()],
     },
   },
+  optimizeDeps: {
+    include: ['linked-dep'],
+  },
+
 });
