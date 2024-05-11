@@ -9,7 +9,6 @@ export default function Step1() {
   return (
     <div>
       <Drawer.Root shouldScaleBackground>
-        <div className="mx-8">
           <h3 className="text-sm tracking-wider text-slate-400 -ml-4 font-medium">
             STEP 1
           </h3>
@@ -58,8 +57,6 @@ export default function Step1() {
               </span>
             </li>
           </ol>
-        </div>
-
         <Drawer.Portal>
           <Drawer.Overlay className="fixed inset-0 bg-black/40" />
           <Drawer.Content className="bg-slate-500 flex flex-col rounded-t-[10px] h-[96%] mt-24 fixed bottom-0 left-0 right-0">

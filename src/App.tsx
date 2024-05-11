@@ -15,14 +15,16 @@ function App() {
   
   function click() {
     setStep(step + 1); //on click, add 1 to step
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+
   }
   
   let button = (<>
-    <div className="w-full">
-      <Button variant="default" size="lg" className="w-full" onClick={click}>
+    {/* <div className=" w-screen"> */}
+      <Button variant="default" size="lg" className="my-8 w-full" onClick={click}>
         Continue
       </Button>
-    </div>
+    {/* </div> */}
   </>)
 
   let content;
@@ -52,10 +54,13 @@ function App() {
   }
 
   return (
-    <div className="max-w-screen-sm w-screen h-full bg-slate-950 flex flex-col justify-between align-middle mx-20 px-20 py-20">
+    // <div className=" ">
+    <div className=" bg-slate-950 max-w-screen-sm w-screen h-screen h-[90dvh] flex flex-col justify-between align-middle px-8 pt-14 pb-20">
       {content}
       {button}
     </div>
+   
+    // </div>
   );
 }
 
