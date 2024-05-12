@@ -12,31 +12,45 @@ export default function Step2() {
     <div>
       <Drawer.Root shouldScaleBackground>
         <h3 className="text-sm tracking-wider text-slate-400 font-medium">
-          STEP 2
+          STEP 3
         </h3>
-        <h1 className="text-2xl text-slate-50 mb-8">The Knock Back</h1>
+        <h1 className="text-2xl text-slate-50 mb-8">Baking</h1>
         <ol className="list-decimal text-left ml-6">
           <li className="text-xl text-slate-200 mb-8">
-            Your dough should have doubled in size. Knock back the air and then
-            reshape it into a ball.
-          </li>
-          <li className="text-xl text-slate-200 mb-8">
-            Oil the Dutch oven or casserole dish, making sure to oil the walls
-            as well as the base, then place the dough inside.
-          </li>
-          <li className="text-xl text-slate-200 mb-8">
-            Add a little dusting of flour to keep the moisture in, then cover
-            with a tea towel and rest for another{" "}
+            Place the bread dough into a preheated oven, with the lid on, for{" "}
             <Drawer.Trigger
               className="bg-slate-950 underline p-0 underline-offset-2 inline"
-              onClick={() => setStepTime(90 * 60)}
+              onClick={() => setStepTime(15 * 60)}
             >
-              90 minutes <PlayCircle className="inline ml-1" />
+              15 minutes <PlayCircle className="inline ml-1" />
             </Drawer.Trigger>
           </li>
-          <li className="text-l text-slate-400 ml-8 list-none mb-4">
-            10 minutes before finishing this second prove, preheat the oven to
-            220ºC{" "}
+          <li className="text-xl text-slate-200 mb-8">
+            Take it out of the oven, remove the lid, then put back in to bake for another{" "}
+            <Drawer.Trigger
+              className="bg-slate-950 underline p-0 underline-offset-2 inline"
+              onClick={() => setStepTime(15 * 60)}
+            >
+              15 minutes <PlayCircle className="inline ml-1" />
+            </Drawer.Trigger>
+            <br />
+            <br />
+            Keep an eye on it — every oven is different, so you may need longer
+            or shorter.
+          </li>
+          <li className="text-xl text-slate-200 mb-8">
+            Take the bread out and let it cool for{" "}
+            <Drawer.Trigger
+              className="bg-slate-950 underline p-0 underline-offset-2 inline"
+              onClick={() => setStepTime(5 * 60)}
+            >
+              5 minutes <PlayCircle className="inline ml-1" />
+            </Drawer.Trigger>
+            , then turn out the bread onto a wire rack{" "}
+          </li>
+          <li className="text-xl text-slate-200 mb-8">
+            Wait at least half an hour before cutting into it — the inside is
+            still baking and needs to cool down!
           </li>
         </ol>
         <Drawer.Portal>
