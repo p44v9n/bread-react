@@ -1,10 +1,13 @@
 import "./App.css";
+import {useState} from "react";
 import { Drawer } from "vaul";
 import { PlayCircle } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import Timer from "@/components/ui/Timer";
 
 export default function Step2() {
   // const [count, setCount] = useState(0)
+  const [stepTime, setStepTime] = useState<number>(0);
 
   return (
     <div>
@@ -25,7 +28,7 @@ export default function Step2() {
           <li className="text-xl text-slate-200 mb-8">
             Add a little dusting of flour to keep the moisture in, then cover
             with a tea towel and rest for another{" "}
-            <Drawer.Trigger className="bg-slate-950 underline p-0 underline-offset-2 inline">
+            <Drawer.Trigger className="bg-slate-950 underline p-0 underline-offset-2 inline" onClick={() => setStepTime(90*60)}>
               90 minutes <PlayCircle className="inline ml-1" />
             </Drawer.Trigger>
           </li>
@@ -43,11 +46,11 @@ export default function Step2() {
                 <Drawer.Title className="font-medium mb-4 slate-950">
                   Timer
                 </Drawer.Title>
-                <Progress value={33} className="mb-4" />
                 <p className="text-slate-300 mb-2">
                   This component can be used as a replacement for a Dialog on
                   mobile and tablet devices.
                 </p>
+                <Timer time={stepTime}/>
                 <p className="text-slate-300 mb-8">
                   It uses{" "}
                   <a

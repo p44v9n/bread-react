@@ -8,9 +8,7 @@ export default function Step1() {
   // const [count, setCount] = useState(0)
 
 const [stepTime, setStepTime] = useState<number>(0);
-  
-  
-  
+    
   return (
     
     <div>
