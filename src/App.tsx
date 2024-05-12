@@ -6,12 +6,13 @@ import { useState } from "react";
 // import { Drawer } from 'vaul'
 import { Button } from '@/components/ui/button'
 import Step1 from './Step1' 
+import Step2 from './Step2' 
 import Intro from './Intro' 
 
 // const currentStep = 0;
 
 function App() {
-  const [step, setStep] = useState(0); //step, setter, initial state
+  const [step, setStep] = useState(2); //step, setter, initial state
   
   function click() {
     setStep(step + 1); //on click, add 1 to step
@@ -39,7 +40,12 @@ function App() {
     content = (
       <>
         <Step1 />
-       
+      </>
+    );
+  } else if (step === 3) {
+    content = (
+      <>
+        <Step2 />
       </>
     );
   } else {
@@ -54,13 +60,10 @@ function App() {
   }
 
   return (
-    // <div className=" ">
     <div className=" bg-slate-950 max-w-screen-sm w-screen flex flex-col min-h-dvh justify-between align-middle px-8 pt-14 pb-12">
       {content}
       {button}
     </div>
-   
-    // </div>
   );
 }
 
