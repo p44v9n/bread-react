@@ -55,7 +55,7 @@ function App() {
 
   return (
     // <div className=" ">
-    <div className=" bg-slate-950 max-w-screen-sm w-screen h-screen h-[90dvh] flex flex-col justify-between align-middle px-8 pt-14 pb-20">
+    <div className=" bg-slate-950 max-w-screen-sm w-screen flex flex-col min-h-dvh justify-between align-middle px-8 pt-14 pb-12">
       {content}
       {button}
     </div>
