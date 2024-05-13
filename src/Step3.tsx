@@ -2,7 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import { Drawer } from "vaul";
 import { PlayCircle } from "lucide-react";
-import Timer from "@/components/ui/Timer";
+import DrawerTimer from "@/components/DrawerTimer";
 
 export default function Step2() {
   // const [count, setCount] = useState(0)
@@ -53,42 +53,7 @@ export default function Step2() {
             still baking and needs to cool down!
           </li>
         </ol>
-        <Drawer.Portal>
-          <Drawer.Overlay className="fixed inset-0 bg-black/40" />
-          <Drawer.Content className="bg-slate-500 flex flex-col rounded-t-[10px] h-[96%] mt-24 fixed bottom-0 left-0 right-0">
-            <div className="p-4 bg-slate-700 rounded-t-[10px] flex-1">
-              <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-slate-300 mb-8" />
-              <div className="max-w-md mx-auto">
-                <Drawer.Title className="font-medium mb-4 slate-950">
-                  Timer
-                </Drawer.Title>
-                <p className="text-slate-300 mb-2">
-                  This component can be used as a replacement for a Dialog on
-                  mobile and tablet devices.
-                </p>
-                <Timer time={stepTime} />
-                <p className="text-slate-300 mb-8">
-                  It uses{" "}
-                  <a
-                    href="https://www.radix-ui.com/docs/primitives/components/dialog"
-                    className="underline"
-                    target="_blank"
-                  >
-                    Radix&apos;s Dialog primitive
-                  </a>{" "}
-                  under the hood and is inspired by{" "}
-                  <a
-                    href="https://twitter.com/devongovett/status/1674470185783402496"
-                    className="underline"
-                    target="_blank"
-                  >
-                    this tweet.
-                  </a>
-                </p>
-              </div>
-            </div>
-          </Drawer.Content>
-        </Drawer.Portal>
+        <DrawerTimer time={stepTime} />
       </Drawer.Root>
     </div>
   );
