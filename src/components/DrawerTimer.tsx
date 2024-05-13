@@ -15,6 +15,7 @@ export default function DrawerTimer({ time }: { time: number }) {
     setTimeLeft(time);
     setTimeAsPercent(100);
     setIsRunning(true); // change this to auto start it
+    (document.activeElement as HTMLElement)?.blur() // trying to remove focus but not working
   }, [time])
 
   useEffect(() => {
@@ -49,26 +50,23 @@ export default function DrawerTimer({ time }: { time: number }) {
     return (time % 60).toString().padStart(2, '0')
   }
 
-
   return (
     <>
     <DrawerPortal>
           <DrawerOverlay className="fixed inset-0 bg-black/40" />
           <DrawerContent className="flex bg-slate-700 flex-col rounded-t-[10px] h-[96%] mt-24 fixed bottom-0 left-0 right-0">
             <div className="p-4 rounded-t-[10px] flex-1">
-              {/* <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-slate-300 mb-8" /> */}
               <div className="max-w-md mx-auto flex flex-col justify-between h-[94%]">
                 <DrawerTitle className="font-medium mb-4 slate-950">
                   Timer
                 </DrawerTitle>
                 <div>
-
                   <Progress value={timeAsPercent} className="my-4" />
                   <p className="text-4xl text-slate-50 text-center">{timeAsMinutes(timeLeft) +":"+ timeAsSeconds(timeLeft)}</p>
                 </div>
                 <div className="flex flex-row w-full gap-2">
                   <DrawerClose className="bg-rose-950 p-0 rounded-full w-1/2 ">
-                    <Button className="text-rose-50 bg-rose-950"><CircleX />&nbsp;Cancel</Button>
+                    <Button className="text-rose-50 bg-rose-950 hover:bg-rose-950 w-full"><CircleX />&nbsp;Cancel</Button>
                   </DrawerClose>
                   <Button onClick={() => setIsRunning(!isRunning)} className="w-1/2 text-slate-50" variant={"secondary"}>
                   {isRunning ? <PauseCircle /> : <PlayCircle />}&nbsp;

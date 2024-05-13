@@ -1,13 +1,11 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-import brid from "./assets/bread.svg";
 import "./App.css";
 import { useState } from "react";
-// import { Drawer } from 'vaul'
 import { Button } from "@/components/ui/button";
+import Splash from "./Splash";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
+import brid from "./assets/bread.svg";
 import Intro from "./Intro";
 import { MoveLeft, MoveRight, RotateCcw } from "lucide-react";
 
@@ -41,18 +39,7 @@ function App() {
   let content;
   if (step === 0) {
     content = (
-      <>
-        <h1 className="text-center text-3xl leading-[100px]">
-          A<br />
-          Simple
-          <br />
-          Loaf
-          <br />
-        </h1>
-        <div className="mx-auto">
-          <img src={brid} alt="" width="150" />
-        </div>
-      </>
+    <Splash />
     );
   } else if (step === 1) {
     content = (
@@ -90,7 +77,7 @@ function App() {
   }
 
   return (
-    <div className=" bg-slate-950 max-w-screen-sm w-screen flex flex-col min-h-dvh justify-between align-middle px-8 pt-8 pb-12">
+    <div className=" bg-slate-950 max-w-screen-sm w-screen flex flex-col min-h-dvh justify-around align-middle px-8 pt-8 pb-12 h-max">
       <div className="flex flex-col">
         {step > 0 && (
           <Button

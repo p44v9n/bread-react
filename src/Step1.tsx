@@ -2,9 +2,9 @@ import "./App.css";
 import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
 import { PlayCircle } from "lucide-react";
 import DrawerTimer from "@/components/DrawerTimer";
-import { useState } from "react";
+// import { useState } from "react";
 // import { Button } from "./components/ui/button";
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Step1() {
   // const [count, setCount] = useState(0)
