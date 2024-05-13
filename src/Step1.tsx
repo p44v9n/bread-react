@@ -1,5 +1,5 @@
 import "./App.css";
-import { Drawer } from "vaul";
+import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
 import { PlayCircle } from "lucide-react";
 import DrawerTimer from "@/components/DrawerTimer";
 import { useState } from "react";
@@ -12,7 +12,7 @@ const [stepTime, setStepTime] = useState<number>(0);
   return (
     
     <div>
-      <Drawer.Root shouldScaleBackground>
+      <Drawer shouldScaleBackground>
           <h3 className="text-sm tracking-wider text-slate-400 font-medium">
             STEP 1
           </h3>
@@ -33,19 +33,19 @@ const [stepTime, setStepTime] = useState<number>(0);
             <li className="text-xl text-slate-200 mb-8">
               <span>
                 Turn out onto a clean surface and knead for{" "}
-                <Drawer.Trigger className="bg-slate-950 underline p-0 underline-offset-2 inline" onClick={() => setStepTime(480)}>
+                <DrawerTrigger className="bg-slate-950 underline p-0 underline-offset-2 inline" onClick={() => setStepTime(480)}>
                   8 minutes
                   <PlayCircle className="inline ml-1" />
-                </Drawer.Trigger>
+                </DrawerTrigger>
               </span>
             </li>
             <li className="text-xl text-slate-200 mb-8">
               <span>
                 Let the dough sit for{" "}
-                <Drawer.Trigger className="bg-slate-950 underline p-0 underline-offset-2 inline" onClick={() => setStepTime(180)}>
+                <DrawerTrigger className="bg-slate-950 underline p-0 underline-offset-2 inline" onClick={() => setStepTime(180)}>
                   3 minutes
                   <PlayCircle className="inline ml-1" />
-                </Drawer.Trigger>
+                </DrawerTrigger>
               </span>
             </li>
             <li className="text-xl text-slate-200 mb-8">
@@ -54,15 +54,15 @@ const [stepTime, setStepTime] = useState<number>(0);
             <li className="text-xl text-slate-200 mb-8">
               <span>
               Add a little dusting of flour to keep the moisture in, then cover with a tea towel and rest for{" "}
-                <Drawer.Trigger className="bg-slate-950 underline p-0 underline-offset-2 inline" onClick={() => setStepTime(5400)}>
+                <DrawerTrigger className="bg-slate-950 underline p-0 underline-offset-2 inline" onClick={() => setStepTime(5400)}>
                   90 minutes
                   <PlayCircle className="inline ml-1" />
-                </Drawer.Trigger>
+                </DrawerTrigger>
               </span>
             </li>
           </ol>
           <DrawerTimer time={stepTime}/>
-      </Drawer.Root>
+      </Drawer>
     </div>
   );
 }
