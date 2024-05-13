@@ -3,7 +3,9 @@ import { Progress } from "@/components/ui/progress";
 import { DrawerPortal, DrawerOverlay, DrawerContent, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
 import { Button}  from "@/components/ui/button"
 import { CircleX, PauseCircle, PlayCircle } from "lucide-react";
-
+// @ts-ignore
+import useSound from "use-sound";
+import finishedSound from '@/assets/sounds/finished.m4a';
 
 export default function DrawerTimer({ time }: { time: number }) {
   const [isRunning, setIsRunning] = useState(false);
@@ -18,6 +20,8 @@ export default function DrawerTimer({ time }: { time: number }) {
     (document.activeElement as HTMLElement)?.blur() // trying to remove focus but not working
   }, [time])
 
+  const [play] = useSound(finishedSound);
+
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
     if (isRunning) {
@@ -27,6 +31,8 @@ export default function DrawerTimer({ time }: { time: number }) {
           if (newTime <= 0) {
             clearInterval(interval!); // Clear interval if time is up
             setIsRunning(false); // Stop the timer
+            setTimeAsPercent(0);
+            play();
             return 0; // Don't allow the time to go below zero
           }
           setTimeAsPercent((newTime / time) * 100); // Update the time as percent
@@ -68,7 +74,7 @@ export default function DrawerTimer({ time }: { time: number }) {
                   <DrawerClose className="bg-rose-950 p-0 rounded-full w-1/2 ">
                     <Button className="text-rose-50 bg-rose-950 hover:bg-rose-950 w-full"><CircleX />&nbsp;Cancel</Button>
                   </DrawerClose>
-                  <Button onClick={() => setIsRunning(!isRunning)} className="w-1/2 text-slate-50" variant={"secondary"}>
+                  <Button onClick={() => setIsRunning(!isRunning)} className="w-1/2 text-slate-50" variant={"secondary"} disabled={timeLeft <= 0}>
                   {isRunning ? <PauseCircle /> : <PlayCircle />}&nbsp;
                     {isRunning ? "Pause" : "Resume"}
                   </Button>
