@@ -33,10 +33,11 @@ export default function Step2() {
             >
               90 minutes <PlayCircle className="inline ml-1" />
             </DrawerTrigger>
-          </li>
-          <li className="text-l text-slate-400 ml-8 list-none mb-4">
+            <br />
+            <div className="text-base leading-5 text-slate-400 list-none mt-2">
             10 minutes before finishing this second prove, preheat the oven to
-            220ºC{" "}
+            220ºC
+            </div>
           </li>
         </ol>
         <DrawerTimer time={stepTime}/>

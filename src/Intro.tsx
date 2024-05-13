@@ -16,14 +16,14 @@ export default function Intro() {
         </div>
         <ul className="list-disc text-left ml-8">
           <li className="text-xl text-slate-200">750g bread flour</li>
-          <li className="text-l text-slate-400 ml-8 list-none">
+          <li className="text-l text-slate-400 -mt-1 list-none">
             + a little extra for dusting
           </li>
           <li className="text-xl text-slate-200">7g instant yeast</li>
           <li className="text-xl text-slate-200">12g table salt</li>
           <li className="text-xl text-slate-200">480ml water</li>
           <li className="text-xl text-slate-200">25ml olive oil</li>
-          <li className="text-l text-slate-400 ml-8 list-none mb-4">
+          <li className="text-l text-slate-400 -mt-1 list-none mb-4">
             + a splash extra for the tin
           </li>
         </ul>
@@ -38,11 +38,11 @@ export default function Intro() {
           <li className="text-xl text-slate-200">A large mixing bowl</li>
           <li className="text-xl text-slate-200">A tea towel</li>
           <li className="text-xl text-slate-200">A large loaf tin</li>
-          <li className="text-l text-slate-400 ml-8 list-none">
+          <li className="text-l text-slate-400 -mt-1 list-none">
             or similar casserole dish
           </li>
           <li className="text-xl text-slate-200">Dough scrapers</li>
-          <li className="text-l text-slate-400 ml-8 list-none mb-4">
+          <li className="text-l text-slate-400 -mt-1 list-none mb-4">
             optional, but very useful!
           </li>
         </ul>
@@ -55,7 +55,7 @@ export default function Intro() {
         </div>
         <ul className="list-disc text-left ml-8">
           <li className="text-xl text-slate-200">A clean surface</li>
-          <li className="text-l text-slate-400 ml-8 list-none">
+          <li className="text-l text-slate-400 -mt-1 list-none">
             for kneading on
           </li>
           <li className="text-xl text-slate-200">An oven</li>
