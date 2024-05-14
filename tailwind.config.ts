@@ -18,6 +18,19 @@ module.exports = {
     },
     extend: {
       colors: {
+        twine: {
+          50: '#fbf8f1',
+          100: '#f3ead8',
+          200: '#eadabe',
+          300: '#ddc094',
+          400: '#cea069',
+          500: '#c4894b',
+          600: '#b67340',
+          700: '#975c37',
+          800: '#7a4b32',
+          900: '#633e2b',
+          950: '#351f15',
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -73,7 +86,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      'sans': ['"Space Grotesk"']
+      'sans': ['"Inter"']
     }
   },
   plugins: [require("tailwindcss-animate")],

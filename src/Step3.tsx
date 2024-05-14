@@ -12,25 +12,25 @@ export default function Step2() {
 
   return (
     <div>
-      <Drawer shouldScaleBackground>
-        <h3 className="text-sm tracking-wider text-slate-400 font-medium">
+      <Drawer>
+        <h3 className="text-sm tracking-wider text-twine-600 font-medium">
           STEP 3
         </h3>
-        <h1 className="text-2xl text-slate-50 mb-8">Baking</h1>
+        <h1 className="text-2xl text-twine-950 mb-8">Baking</h1>
         <ol className="list-decimal text-left ml-6">
-          <li className="text-xl text-slate-200 mb-8">
+          <li className="text-xl text-twine-900 mb-8">
             Place the bread dough into a preheated oven, with the lid on, for{" "}
             <DrawerTrigger
-              className="bg-slate-950 underline p-0 underline-offset-2 inline"
+              className="bg-twine-100 underline p-0 underline-offset-2 inline"
               onClick={() => setStepTime(15 * 60)}
             >
               15 minutes <PlayCircle className="inline ml-1" />
             </DrawerTrigger>
           </li>
-          <li className="text-xl text-slate-200 mb-8">
+          <li className="text-xl text-twine-900 mb-8">
             Take it out of the oven, remove the lid, then put back in to bake for another{" "}
             <DrawerTrigger
-              className="bg-slate-950 underline p-0 underline-offset-2 inline"
+              className="bg-twine-100 underline p-0 underline-offset-2 inline"
               onClick={() => setStepTime(15 * 60)}
             >
               15 minutes <PlayCircle className="inline ml-1" />
@@ -40,17 +40,17 @@ export default function Step2() {
             Keep an eye on it — every oven is different, so you may need longer
             or shorter.
           </li>
-          <li className="text-xl text-slate-200 mb-8">
+          <li className="text-xl text-twine-900 mb-8">
             Take the bread out and let it cool for{" "}
             <DrawerTrigger
-              className="bg-slate-950 underline p-0 underline-offset-2 inline"
+              className="bg-twine-100 underline p-0 underline-offset-2 inline"
               onClick={() => setStepTime(5 * 60)}
             >
               5 minutes <PlayCircle className="inline ml-1" />
             </DrawerTrigger>
             , then turn out the bread onto a wire rack{" "}
           </li>
-          <li className="text-xl text-slate-200 mb-8">
+          <li className="text-xl text-twine-900 mb-8">
             Wait at least half an hour before cutting into it — the inside is
             still baking and needs to cool down!
           </li>

@@ -5,14 +5,14 @@ export default function Splash() {
 
   return (
     <>
-        <h1 className="text-center text-3xl leading-[100px]">
+        <h1 className="text-center text-3xl leading-[100px] text-twine-900">
           A<br />
           Simple
           <br />
           Loaf
           <br />
         </h1>
-        <div className="mx-auto mt-20">
+        <div className="mx-auto mt-20 mb-10">
           <img src={brid} alt="" width="150" />
         </div>
       </>

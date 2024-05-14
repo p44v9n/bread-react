@@ -17,7 +17,7 @@ import tapSound4 from "@/assets/sounds/tap4.m4a";
 import tapSound5 from "@/assets/sounds/tap5.m4a";
 
 function App() {
-  const [step, setStep] = useState(0); //step, setter, initial state
+  const [step, setStep] = useState(2); //step, setter, initial state
 
   function nextClick() {
     setStep((step + 1) % 6); //on click, add 1 to step
@@ -47,13 +47,30 @@ function App() {
     playFunctions[randomIndex]();
   };
 
-  let button = (
+  const backClick = () => {
+    setStep(step - 1);
+    playTap();
+  };
+
+  const BackButton = (
+    <>
+    <Button
+      variant={"secondary"}
+      className="px-0 w-fit h-4 mb-6 text-twine-800"
+      onClick={backClick}
+    >
+      <MoveLeft/>
+    </Button>
+    </>
+  );
+
+  const ContinueButton = (
     <>
       {/* <div className=" w-screen"> */}
       <Button
         variant="default"
         size="lg"
-        className="my-8 w-full gap-2"
+        className="my-8 w-full gap-2 rounded-full"
         onClick={nextClick}
       >
         {step > 4 && <RotateCcw />}
@@ -102,26 +119,15 @@ function App() {
     );
   }
 
-  const backClick = () => {
-    setStep(step - 1);
-    playTap();
-  };
-
   return (
-    <div className=" bg-slate-950 max-w-screen-sm w-screen flex flex-col min-h-dvh justify-around align-middle px-8 pt-8 pb-12 h-max">
+    <div className=" bg-twine-50 max-w-screen-sm w-screen flex flex-col min-h-dvh justify-around align-middle px-8 pt-8 pb-12 h-max">
       <div className="flex flex-col">
         {step > 0 && (
-          <Button
-            variant={"secondary"}
-            className="px-0 w-fit bg-slate-950"
-            onClick={backClick}
-          >
-            <MoveLeft />
-          </Button>
+         BackButton
         )}
         {content}
       </div>
-      {button}
+      {ContinueButton}
     </div>
   );
 }
