@@ -6,22 +6,25 @@ import { CircleX, PauseCircle, PlayCircle } from "lucide-react";
 // @ts-ignore
 import useSound from "use-sound";
 import finishedSound from '@/assets/sounds/finished.m4a';
+import expandSound from '@/assets/sounds/Expand.m4a';
 
 export default function DrawerTimer({ time }: { time: number }) {
   const [isRunning, setIsRunning] = useState(false);
   const [timeLeft, setTimeLeft] = useState(time);
   const [timeAsPercent, setTimeAsPercent] = useState(100);
 
+  const [play] = useSound(finishedSound);
+  const [playExpand] = useSound(expandSound);
+
   // when the drawer is opened from a new timer
   useEffect(() => {
     setTimeLeft(time);
     setTimeAsPercent(100);
-    setIsRunning(true); // change this to auto start it
-    (document.activeElement as HTMLElement)?.blur() // trying to remove focus but not working
+    setIsRunning(false); // this autostarts the timer
+    playExpand()
   }, [time])
 
-  const [play] = useSound(finishedSound);
-
+  // while timeleft is changing / isrunning changes, countdown
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
     if (isRunning) {
