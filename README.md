@@ -1,4 +1,4 @@
-### let’s bake some bread!
+## let’s bake some bread!
 
 React + Tailwind + TypeScript + Vite + Bun
 
@@ -16,3 +16,18 @@ React + Tailwind + TypeScript + Vite + Bun
 🎣 Sound hook from Josh Comeau https://github.com/joshwcomeau/use-sound
 
 🔈 Sounds from the [Meta Sound Kit](https://design.facebook.com/toolsandresources/sound-kit-for-prototypes/) and [!BORING](https://andyworksco.notion.site/Boring-Sounds-d92a136378114eceb1898313acb673f0?pvs=4)
+
+
+---
+
+### Todo
+
+* favicon
+* ~new colour scheme~
+* dark mode colour scheme (tailwind dark: and shadcn defaults)
+* drawer open/close sound (expand/collapse sounds)
+* sound levelling average out
+* step detail view
+* show hour in timer
+* minimised drawer for when timer keeps going OR cancel timer when swiping away
+* persist timer in notificaiton?

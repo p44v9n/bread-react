@@ -1,5 +1,6 @@
 import "./App.css";
 import brid from "./assets/bread.svg";
+import OverviewToggle from "./components/OverviewToggle";
 
 export default function Splash() {
 
@@ -15,6 +16,7 @@ export default function Splash() {
         <div className="mx-auto mt-20 mb-10">
           <img src={brid} alt="" width="150" />
         </div>
+        <OverviewToggle />
       </>
   )
 }
