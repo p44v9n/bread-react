@@ -17,7 +17,7 @@ import tapSound4 from "@/assets/sounds/tap4.m4a";
 import tapSound5 from "@/assets/sounds/tap5.m4a";
 
 function App() {
-  const [step, setStep] = useState(2); //step, setter, initial state
+  const [step, setStep] = useState(0); //step, setter, initial state
 
   function nextClick() {
     setStep((step + 1) % 6); //on click, add 1 to step
