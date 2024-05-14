@@ -57,7 +57,7 @@ function App() {
     <>
       <Button
         variant={"secondary"}
-        className="px-0 w-fit h-4 mb-6 text-twine-800"
+        className="px-0 w-fit h-4 mb-6 text-twine-800 items-baseline"
         onClick={backClick}
       >
         <MoveLeft />
@@ -125,7 +125,7 @@ function App() {
   return (
     <div className=" bg-twine-50 max-w-screen-sm w-screen flex flex-col min-h-dvh justify-between align-middle px-8 pt-8 h-max">
       <div>
-        <div className="flex flex-row w-screen justify-between">
+        <div className="flex flex-row w-full items-center justify-between">
           {step > 0 && BackButton}
           {step > 1 && step < 5 && <OverviewToggle />}
           </div>
