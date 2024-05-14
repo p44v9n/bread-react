@@ -22,9 +22,10 @@ React + Tailwind + TypeScript + Vite + Bun
 
 ### Todo
 
-* favicon
-* ~new colour scheme~
+* ~~ favicon ~~
+* ~~ new colour scheme ~~
 * dark mode colour scheme (tailwind dark: and shadcn defaults)
+* ~~ Acorn font ~~
 * drawer open/close sound (expand/collapse sounds)
 * sound levelling average out
 * step detail view

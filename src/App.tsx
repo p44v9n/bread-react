@@ -15,6 +15,7 @@ import tapSound2 from "@/assets/sounds/tap2.wav";
 import tapSound3 from "@/assets/sounds/tap3.wav";
 import tapSound4 from "@/assets/sounds/tap4.m4a";
 import tapSound5 from "@/assets/sounds/tap5.m4a";
+import OverviewToggle from "./components/OverviewToggle";
 
 function App() {
   const [step, setStep] = useState(0); //step, setter, initial state
@@ -54,13 +55,13 @@ function App() {
 
   const BackButton = (
     <>
-    <Button
-      variant={"secondary"}
-      className="px-0 w-fit h-4 mb-6 text-twine-800"
-      onClick={backClick}
-    >
-      <MoveLeft/>
-    </Button>
+      <Button
+        variant={"secondary"}
+        className="px-0 w-fit h-4 mb-6 text-twine-800"
+        onClick={backClick}
+      >
+        <MoveLeft />
+      </Button>
     </>
   );
 
@@ -111,7 +112,9 @@ function App() {
   } else {
     content = (
       <>
-        <h1 className="text-center text-5xl font-serif mb-20 text-twine-900">Nom nom!</h1>
+        <h1 className="text-center text-5xl font-serif mb-20 text-twine-900">
+          Nom nom!
+        </h1>
         <div className="mx-auto">
           <img src={brid} alt="" width="150" />
         </div>
@@ -120,12 +123,15 @@ function App() {
   }
 
   return (
-    <div className=" bg-twine-50 max-w-screen-sm w-screen flex flex-col min-h-dvh justify-around align-middle px-8 pt-8 pb-12 h-max">
-      <div className="flex flex-col">
-        {step > 0 && (
-         BackButton
-        )}
-        {content}
+    <div className=" bg-twine-50 max-w-screen-sm w-screen flex flex-col min-h-dvh justify-between align-middle px-8 pt-8 h-max">
+      <div>
+        <div className="flex flex-row w-screen justify-between">
+          {step > 0 && BackButton}
+          {step > 1 && step < 5 && <OverviewToggle />}
+          </div>
+        <div className="flex flex-col">
+          {content}
+        </div>
       </div>
       {ContinueButton}
     </div>
