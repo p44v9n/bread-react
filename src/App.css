@@ -20,6 +20,15 @@
     src: url(../src/assets/fonts/Inter-VariableFont_slnt,wght.woff2) format('woff2');
   }
 
+
+  @font-face {
+    font-family: 'Acorn';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url(../src/assets/fonts/Acorn-SemiBold.woff2) format('woff2');
+  }
+
   * {
     @apply border-border;
   }

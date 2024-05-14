@@ -86,7 +86,8 @@ module.exports = {
       },
     },
     fontFamily: {
-      'sans': ['"Inter"']
+      'sans': ['Inter'],
+      'serif': ['Acorn']
     }
   },
   plugins: [require("tailwindcss-animate")],

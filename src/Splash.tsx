@@ -5,7 +5,7 @@ export default function Splash() {
 
   return (
     <>
-        <h1 className="text-center text-3xl leading-[100px] text-twine-900">
+        <h1 className="text-center text-5xl tracking-wider leading-[100px] text-twine-900 font-serif">
           A<br />
           Simple
           <br />

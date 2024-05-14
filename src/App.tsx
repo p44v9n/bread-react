@@ -111,7 +111,7 @@ function App() {
   } else {
     content = (
       <>
-        <h1 className="text-center text-3xl leading-[100px]">Nom nom!</h1>
+        <h1 className="text-center text-5xl font-serif mb-20 text-twine-900">Nom nom!</h1>
         <div className="mx-auto">
           <img src={brid} alt="" width="150" />
         </div>

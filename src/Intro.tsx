@@ -7,7 +7,7 @@ export default function Intro() {
 
   return (
     <div>
-      <h1 className="text-2xl text-twine-950 mb-4">What you’ll need:</h1>
+      <h1 className="text-3xl text-twine-950 font-serif mb-4">What you’ll need:</h1>
 
       <div>
         <div className="flex flex-row gap-2 mb-4 mt-8">

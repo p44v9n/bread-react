@@ -16,7 +16,7 @@ export default function Step2() {
         <h3 className="text-sm tracking-wider text-twine-600 font-medium">
           STEP 3
         </h3>
-        <h1 className="text-2xl text-twine-950 mb-8">Baking</h1>
+        <h1 className="text-3xl font-serif text-twine-950 mb-8">Baking</h1>
         <ol className="list-decimal text-left ml-6">
           <li className="text-xl text-twine-900 mb-8">
             Place the bread dough into a preheated oven, with the lid on, for{" "}

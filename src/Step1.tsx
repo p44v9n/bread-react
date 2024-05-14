@@ -14,7 +14,7 @@ export default function Step1() {
         <h3 className="text-sm tracking-wider text-twine-900 font-medium">
           STEP 1
         </h3>
-        <h1 className="text-2xl text-twine-950 mb-8">Mixing</h1>
+        <h1 className="text-3xl text-twine-950 mb-8 font-serif">Mixing</h1>
         <ol className="list-decimal text-left ml-6">
           <li className="text-xl text-twine-900 mb-8">
             Combine <strong>450ml</strong> of water and <strong>7g</strong> of
