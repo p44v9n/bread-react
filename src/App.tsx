@@ -16,15 +16,11 @@ import tapSound3 from "@/assets/sounds/tap3.wav";
 import tapSound4 from "@/assets/sounds/tap4.m4a";
 import tapSound5 from "@/assets/sounds/tap5.m4a";
 import OverviewToggle from "./components/OverviewToggle";
+import Step1Carousel from "./Step1Carousel";
+import ContinueButton from "./components/ContinueButton";
 
 function App() {
   const [step, setStep] = useState(0); //step, setter, initial state
-
-  function nextClick() {
-    setStep((step + 1) % 6); //on click, add 1 to step
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
-    playTap();
-  }
 
   // Load your sounds using useSound
   const [playSound1] = useSound(tapSound1);
@@ -48,39 +44,16 @@ function App() {
     playFunctions[randomIndex]();
   };
 
+  function nextClick() {
+    setStep((step + 1) % 6); //on click, add 1 to step
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    playTap();
+  }
+
   const backClick = () => {
     setStep(step - 1);
     playTap();
   };
-
-  const BackButton = (
-    <>
-      <Button
-        variant={"secondary"}
-        className="px-0 w-fit h-4 mb-6 text-twine-800 items-baseline"
-        onClick={backClick}
-      >
-        <MoveLeft />
-      </Button>
-    </>
-  );
-
-  const ContinueButton = (
-    <>
-      {/* <div className=" w-screen"> */}
-      <Button
-        variant="default"
-        size="lg"
-        className="my-8 w-full gap-2 rounded-full"
-        onClick={nextClick}
-      >
-        {step > 4 && <RotateCcw />}
-        {step > 4 ? "Reset" : "Continue"}
-        {step <= 4 && <MoveRight />}
-      </Button>
-      {/* </div> */}
-    </>
-  );
 
   let content;
   if (step === 0) {
@@ -94,7 +67,7 @@ function App() {
   } else if (step === 2) {
     content = (
       <>
-        <Step1 />
+        <Step1 handleBackClick={backClick} />
       </>
     );
   } else if (step === 3) {
@@ -125,15 +98,9 @@ function App() {
   return (
     <div className=" bg-twine-50 max-w-screen-sm w-screen flex flex-col min-h-dvh justify-between align-middle px-8 pt-8 h-max">
       <div>
-        <div className="flex flex-row w-full items-center justify-between">
-          {step > 0 && BackButton}
-          {step > 1 && step < 5 && <OverviewToggle />}
-          </div>
-        <div className="flex flex-col">
-          {content}
-        </div>
+        {content}
       </div>
-      {ContinueButton}
+      <ContinueButton step={step} onClick={nextClick} />
     </div>
   );
 }

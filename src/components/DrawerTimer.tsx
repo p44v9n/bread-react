@@ -74,7 +74,7 @@ export default function DrawerTimer({ time }: { time: number }) {
                   <p className="text-4xl text-twine-950 text-center">{timeAsMinutes(timeLeft) +":"+ timeAsSeconds(timeLeft)}</p>
                 </div>
                 <div className="flex flex-row w-full gap-2">
-                  <DrawerClose className="bg-rose-950 p-0 rounded-full w-1/2 ">
+                  <DrawerClose className="bg-rose-950 p-0 rounded-full w-1/2">
                     <Button className="rounded-full text-rose-50 bg-rose-950 hover:bg-rose-950 w-full"><CircleX />&nbsp;Cancel</Button>
                   </DrawerClose>
                   <Button onClick={() => setIsRunning(!isRunning)} className="w-1/2 text-twine-950" variant={"secondary"} disabled={timeLeft <= 0}>
