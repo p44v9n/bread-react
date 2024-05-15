@@ -2,21 +2,21 @@ import "./App.css";
 import { useState } from "react";
 // @ts-ignore
 import { useSound } from "use-sound";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import Splash from "./Splash";
 import Intro from "./Intro";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import brid from "./assets/bread.svg";
-import { MoveLeft, MoveRight, RotateCcw } from "lucide-react";
+// import { MoveLeft, MoveRight, RotateCcw } from "lucide-react";
 import tapSound1 from "@/assets/sounds/tap1.wav";
 import tapSound2 from "@/assets/sounds/tap2.wav";
 import tapSound3 from "@/assets/sounds/tap3.wav";
 import tapSound4 from "@/assets/sounds/tap4.m4a";
 import tapSound5 from "@/assets/sounds/tap5.m4a";
-import OverviewToggle from "./components/OverviewToggle";
-import Step1Carousel from "./Step1Carousel";
+// import OverviewToggle from "./components/OverviewToggle";
+// import Step1Carousel from "./Step1Carousel";
 import ContinueButton from "./components/ContinueButton";
 
 function App() {

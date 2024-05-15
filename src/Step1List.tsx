@@ -3,11 +3,11 @@ import "./App.css";
 import { PlayCircle } from "lucide-react";
 // import DrawerTimer from "@/components/DrawerTimer";
 import { Button } from "@/components/ui/button"
-import { useState } from "react";
+// import { useState } from "react";
 
 export default function Step1() {
   // const [count, setCount] = useState(0)
-  const [stepTime, setStepTime] = useState<number>(0);
+  // const [stepTime, setStepTime] = useState<number>(0);
 
   return (
     <>
@@ -35,7 +35,7 @@ export default function Step1() {
               Turn out onto a clean surface and knead for{" "}
               <Button
                 className="bg-twine-100 underline p-[4px] underline-offset-2 inline"
-                onClick={() => setStepTime(480)}
+                onClick={() => console.log(480)}
               >
                 8 minutes
                 <PlayCircle className="inline ml-1" />
@@ -47,7 +47,7 @@ export default function Step1() {
               Let the dough sit for{" "}
               <Button
                 className="bg-twine-100 underline p-[4px] underline-offset-2 inline"
-                onClick={() => setStepTime(180)}
+                onClick={() => console.log(180)}
               >
                 3 minutes
                 <PlayCircle className="inline ml-1" />
@@ -64,7 +64,7 @@ export default function Step1() {
               with a tea towel and rest for{" "}
               <Button
                 className="bg-twine-100 underline p-[4px] underline-offset-2 inline"
-                onClick={() => setStepTime(5400)}
+                onClick={() => console.log(5400)}
               >
                 90 minutes
                 <PlayCircle className="inline ml-1" />

@@ -1,4 +1,4 @@
-import { MoveLeft, RotateCcw } from "lucide-react";
+import { MoveLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ContinueButtonProps {

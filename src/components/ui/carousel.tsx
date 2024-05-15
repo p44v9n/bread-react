@@ -269,7 +269,7 @@ CarouselNext.displayName = "CarouselNext"
 const CarouselDots = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) =>  {
+>(({ className, ...props }) =>  {
   const { selectedIndex, scrollTo, api } = useCarousel()
   console.log(selectedIndex)
   return (
