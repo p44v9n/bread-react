@@ -61,7 +61,7 @@ function App() {
   } else if (step === 1) {
     content = (
       <>
-        <Intro />
+        <Intro handleBackClick={backClick} />
       </>
     );
   } else if (step === 2) {
@@ -73,30 +73,30 @@ function App() {
   } else if (step === 3) {
     content = (
       <>
-        <Step2 />
+        <Step2  handleBackClick={backClick} />
       </>
     );
   } else if (step === 4) {
     content = (
       <>
-        <Step3 />
+        <Step3 handleBackClick={backClick}  />
       </>
     );
   } else {
     content = (
-      <>
+      <div className="flex flex-col text-center mt-40">
         <h1 className="text-center text-5xl font-serif mb-20 text-twine-900">
           Nom nom!
         </h1>
         <div className="mx-auto">
           <img src={brid} alt="" width="150" />
         </div>
-      </>
+      </div>
     );
   }
 
   return (
-    <div className=" bg-twine-50 max-w-screen-sm w-screen flex flex-col min-h-dvh justify-between align-middle px-8 pt-8 h-max">
+    <div className="bg-twine-50 max-w-screen-sm w-screen flex flex-col min-h-dvh justify-between align-middle px-8 pt-8 h-max">
       <div>
         {content}
       </div>

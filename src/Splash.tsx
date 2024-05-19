@@ -4,7 +4,7 @@ import brid from "./assets/bread.svg";
 export default function Splash() {
 
   return (
-    <>
+    <div className="flex flex-col align-center">
         <h1 className="text-center text-5xl tracking-wider leading-[100px] text-twine-900 font-serif">
           A<br />
           Simple
@@ -15,6 +15,6 @@ export default function Splash() {
         <div className="mx-auto mt-20 mb-10">
           <img src={brid} alt="" width="150" />
         </div>
-      </>
+      </div>
   )
 }

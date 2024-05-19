@@ -1,62 +1,124 @@
 import "./App.css";
 import { useState } from "react";
-// import { Drawer } from "vaul";
-import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
+import BackButton from "./components/BackButton";
+import OverviewToggle from "./components/OverviewToggle";
+import { useToast } from "@/components/ui/use-toast"
+import ToastTimer from "./components/ToastTimer";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselDots,
+} from "@/components/ui/carousel";
 import { PlayCircle } from "lucide-react";
 
-import DrawerTimer from "@/components/DrawerTimer";
+interface Step3Props {
+  handleBackClick: () => void;
+}
 
-export default function Step2() {
-  // const [count, setCount] = useState(0)
-  const [stepTime, setStepTime] = useState<number>(0);
+const steps = [
+  {
+    text: "Place the bread dough into a preheated oven, with the lid on, for 15 minutes ",
+    image: "path/to/image1.jpg",
+    timer: 900, // 15 minutes in seconds
+  },
+  {
+    text: "Take it out of the oven, remove the lid, then put back in to bake for another 15 minutes. Keep an eye on it — every oven is different, so you may need longer or shorter.",
+    image: "path/to/image2.jpg",
+    timer: 900, // 15 minutes in seconds
+  },
+  {
+    text: "Take the bread out and let it cool for 5 minutes , then turn out the bread onto a wire rack",
+    image: "path/to/image5.jpg",
+    timer: 300, // 5 minutes in seconds
+  },
+  {
+    text: "Wait at least half an hour before cutting into it — the inside is still baking and needs to cool down!",
+    image: "path/to/image6.jpg",
+  },
+];
+
+const Step3: React.FC<Step3Props> = ({ handleBackClick }) => {
+  const [showAsList, setShowAsList] = useState(true);
+  const toast = useToast();
 
   return (
-    <div>
-      <Drawer>
-        <h3 className="text-sm tracking-wider text-twine-600 font-medium">
+    <>
+      <div className="flex flex-row w-full items-center justify-between">
+        <BackButton onClick={handleBackClick} />
+        <OverviewToggle
+          showAsList={showAsList}
+          onClick={() => setShowAsList(!showAsList)}
+        />
+      </div>
+      <div className="flex flex-col">
+        <h3 className="text-sm tracking-wider text-twine-900 font-medium">
           STEP 3
         </h3>
-        <h1 className="text-3xl font-serif text-twine-950 mb-8">Baking</h1>
-        <ol className="list-decimal text-left ml-6">
-          <li className="text-xl text-twine-900 mb-8">
-            Place the bread dough into a preheated oven, with the lid on, for{" "}
-            <DrawerTrigger
-              className="bg-twine-100 underline p-0 underline-offset-2 inline"
-              onClick={() => setStepTime(15 * 60)}
-            >
-              15 minutes <PlayCircle className="inline ml-1" />
-            </DrawerTrigger>
-          </li>
-          <li className="text-xl text-twine-900 mb-8">
-            Take it out of the oven, remove the lid, then put back in to bake for another{" "}
-            <DrawerTrigger
-              className="bg-twine-100 underline p-0 underline-offset-2 inline"
-              onClick={() => setStepTime(15 * 60)}
-            >
-              15 minutes <PlayCircle className="inline ml-1" />
-            </DrawerTrigger>
-            <br />
-            <br />
-            Keep an eye on it — every oven is different, so you may need longer
-            or shorter.
-          </li>
-          <li className="text-xl text-twine-900 mb-8">
-            Take the bread out and let it cool for{" "}
-            <DrawerTrigger
-              className="bg-twine-100 underline p-0 underline-offset-2 inline"
-              onClick={() => setStepTime(5 * 60)}
-            >
-              5 minutes <PlayCircle className="inline ml-1" />
-            </DrawerTrigger>
-            , then turn out the bread onto a wire rack{" "}
-          </li>
-          <li className="text-xl text-twine-900 mb-8">
-            Wait at least half an hour before cutting into it — the inside is
-            still baking and needs to cool down!
-          </li>
-        </ol>
-        <DrawerTimer time={stepTime} />
-      </Drawer>
-    </div>
+        <h1 className="text-3xl text-twine-950 mb-8 font-serif">Mixing</h1>
+
+        {showAsList && (
+          <ol className="list-decimal text-left ml-6">
+            {steps.map((step, index) => (
+              <li key={index} className="text-xl text-twine-900 mb-8">
+                <span className="mr-1">{step.text}</span>
+                {step.timer && (
+                  <a
+                    href="#"
+                    onClick={() => {
+                      toast.toast({
+                        description: <ToastTimer time={step.timer}/>
+                      });
+                    }}
+                    className="text-blue-500 underline"
+                  >
+                    <PlayCircle className="inline mb-1 text-twine-600 hover:text-twine-800" />
+                  </a>
+                )}
+              </li>
+            ))}
+          </ol>
+        )}
+
+        {!showAsList && (
+          <Carousel>
+            <CarouselContent className="mx-2 -ml-4">
+              {steps.map((step, index) => (
+                <CarouselItem
+                  key={index}
+                  className="basis-full bg-twine-50 p-8 ml-4 text-center"
+                >
+                  <img
+                    src={step.image}
+                    alt={`Step ${index + 1}`}
+                    className="mx-auto"
+                    width="150"
+                  />
+                  <p className="mt-8 text-2xl px-4 leading-relaxed text-center text-twine-900">
+                    <span className="mr-2">{step.text}</span>
+                    {step.timer && (
+                      <a
+                        href="#"
+                        onClick={() => {
+                          toast.toast({
+                            description: <ToastTimer time={step.timer} />
+                          });
+                        }}
+                        className="text-blue-500 underline"
+                      >
+                        <PlayCircle className="inline mb-1 text-twine-600 hover:text-twine-800" />
+                      </a>
+                    )}
+                  </p>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselDots />
+          </Carousel>
+        )}
+      </div>
+    </>
   );
-}
+};
+
+export default Step3;

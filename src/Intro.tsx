@@ -1,12 +1,20 @@
 import "./App.css";
+import BackButton from "./components/BackButton";
 // import { Drawer } from "vaul";
 // import { PlayCircle } from "lucide-react";
 
-export default function Intro() {
+interface IntroProps {
+  handleBackClick: () => void;
+}
+
+const Intro: React.FC<IntroProps> = ({ handleBackClick }) => {
   // const [count, setCount] = useState(0)
 
   return (
     <div>
+        <div className="flex flex-row w-full items-center">
+        <BackButton onClick={handleBackClick} />
+      </div>
       <h1 className="text-3xl text-twine-950 font-serif mb-4">What you’ll need:</h1>
 
       <div>
@@ -63,4 +71,7 @@ export default function Intro() {
       </div>
     </div>
   );
-}
+  
+  };
+  
+  export default Intro;
