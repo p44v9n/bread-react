@@ -20,10 +20,10 @@ export function Toaster() {
   }, [toasts])
 
   return (
-    <ToastProvider duration={5400000}>
+    <ToastProvider duration={Infinity}>
       {toasts.map(function ({ id, title, description, action, ...props }) {
         return (
-          <Toast key={id} {...props} tabIndex={-1}>
+          <Toast key={id} {...props}>
             <div className="w-full">
               {title && <ToastTitle>{title}</ToastTitle>}
               {description && (

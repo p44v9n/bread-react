@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Progress } from "@/components/ui/progress";
 // @ts-ignore
 import useSound from "use-sound";
-// import finishedSound from "@/assets/sounds/finished.m4a";
+import finishedSound from "@/assets/sounds/finished.m4a";
 // import expandSound from "@/assets/sounds/Expand.m4a";
 
 export default function ToastTimer({ time }: { time: number }) {
@@ -10,7 +10,7 @@ export default function ToastTimer({ time }: { time: number }) {
   const [timeLeft, setTimeLeft] = useState(time);
   const [timeAsPercent, setTimeAsPercent] = useState(100);
 
-  // const [play] = useSound(finishedSound);
+  const [play] = useSound(finishedSound);
   // const [playExpand] = useSound(expandSound);
 
   // when the drawer is opened from a new timer
@@ -32,7 +32,7 @@ export default function ToastTimer({ time }: { time: number }) {
             clearInterval(interval!); // Clear interval if time is up
             setIsRunning(false); // Stop the timer
             setTimeAsPercent(0);
-            // play();
+            play();
             return 0; // Don't allow the time to go below zero
           }
           setTimeAsPercent((newTime / time) * 100); // Update the time as percent
