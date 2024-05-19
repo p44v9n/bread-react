@@ -2,7 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import BackButton from "./components/BackButton";
 import OverviewToggle from "./components/OverviewToggle";
-import { useToast } from "@/components/ui/use-toast"
+import { useToast } from "@/components/ui/use-toast";
 import ToastTimer from "./components/ToastTimer";
 import {
   Carousel,
@@ -18,14 +18,26 @@ interface Step3Props {
 
 const steps = [
   {
-    text: "Place the bread dough into a preheated oven, with the lid on, for 15 minutes ",
+    text: (
+      <>
+        Place the bread dough into a preheated oven, with the lid on, for 15
+        minutes
+      </>
+    ),
     image: "path/to/image1.jpg",
     timer: 900, // 15 minutes in seconds
   },
   {
-    text: "Take it out of the oven, remove the lid, then put back in to bake for another 15 minutes. Keep an eye on it — every oven is different, so you may need longer or shorter.",
+    text: (
+      <>
+        Take it out of the oven, remove the lid, then put back in to bake for
+        another 15 minutes.
+      </>
+    ),
     image: "path/to/image2.jpg",
     timer: 900, // 15 minutes in seconds
+    smallText:
+      "Keep an eye on it — every oven is different, so you may need longer or shorter.",
   },
   {
     text: "Take the bread out and let it cool for 5 minutes, then turn out the bread onto a wire rack",
@@ -67,13 +79,20 @@ const Step3: React.FC<Step3Props> = ({ handleBackClick }) => {
                     href="#"
                     onClick={() => {
                       toast.toast({
-                        description: <ToastTimer time={step.timer}/>
+                        description: <ToastTimer time={step.timer} />,
                       });
                     }}
                     className="text-blue-500 underline"
                   >
                     <PlayCircle className="inline mb-1 text-twine-600 hover:text-twine-800" />
                   </a>
+                )}
+                {step.smallText && (
+                  <>
+                    <span className="text-twine-700 mr-1 mt-2 block text-base">
+                      {step.smallText}
+                    </span>
+                  </>
                 )}
               </li>
             ))}
@@ -101,13 +120,20 @@ const Step3: React.FC<Step3Props> = ({ handleBackClick }) => {
                         href="#"
                         onClick={() => {
                           toast.toast({
-                            description: <ToastTimer time={step.timer} />
+                            description: <ToastTimer time={step.timer} />,
                           });
                         }}
                         className="text-blue-500 underline"
                       >
                         <PlayCircle className="inline mb-1 text-twine-600 hover:text-twine-800" />
                       </a>
+                    )}
+                    {step.smallText && (
+                      <>
+                        <span className="text-twine-700 mr-1 mt-2 block text-base">
+                          {step.text}
+                        </span>
+                      </>
                     )}
                   </p>
                 </CarouselItem>

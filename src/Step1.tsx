@@ -2,7 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import BackButton from "./components/BackButton";
 import OverviewToggle from "./components/OverviewToggle";
-import { useToast } from "@/components/ui/use-toast"
+import { useToast } from "@/components/ui/use-toast";
 import ToastTimer from "./components/ToastTimer";
 import {
   Carousel,
@@ -18,29 +18,31 @@ interface Step1Props {
 
 const steps = [
   {
-    text: "Combine 450ml of water and 7g of instant yeast in the mixing bowl, until there are no clumps",
+    text: "Combine 450ml of water and 7g of instant yeast in the mixing bowl, until there are no clumps.",
     image: "path/to/image1.jpg",
   },
   {
-    text: "Add in 750g of bread flour, 12g of salt, and 25ml of olive oil, and mix until all ingredients are combined. For a heartier bread, use 500g of strong white bread flour and 250g of wholemeal flour",
+    text: "Add in 750g of bread flour, 12g of salt, and 25ml of olive oil, and mix until all ingredients are combined.",
     image: "path/to/image2.jpg",
+    smallText:
+      "For a heartier bread, use 500g of strong white bread flour and 250g of wholemeal flour.",
   },
   {
-    text: "Turn out onto a clean surface and knead for 8 minutes",
+    text: "Turn out onto a clean surface and knead for 8 minutes.",
     image: "path/to/image3.jpg",
     timer: 480, // 8 minutes in seconds
   },
   {
-    text: "Let the dough sit for 3 minutes",
+    text: "Let the dough sit for 3 minutes.",
     image: "path/to/image4.jpg",
     timer: 180, // 3 minutes in seconds
   },
   {
-    text: "Shape into a ball, then use a dough scraper to lift back into the mixing bowl",
+    text: "Shape into a ball, then use a dough scraper to lift back into the mixing bowl.",
     image: "path/to/image5.jpg",
   },
   {
-    text: "Add a little dusting of flour to keep the moisture in, then cover with a tea towel and rest for 90 minutes",
+    text: "Add a little dusting of flour to keep the moisture in, then cover with a tea towel and rest for 90 minutes.",
     image: "path/to/image6.jpg",
     timer: 5400, // 90 minutes in seconds
   },
@@ -75,13 +77,20 @@ const Step1: React.FC<Step1Props> = ({ handleBackClick }) => {
                     href="#"
                     onClick={() => {
                       toast.toast({
-                        description: <ToastTimer time={step.timer}/>
+                        description: <ToastTimer time={step.timer} />,
                       });
                     }}
                     className="text-blue-500 underline"
                   >
                     <PlayCircle className="inline mb-1 text-twine-600 hover:text-twine-800" />
                   </a>
+                )}
+                {step.smallText && (
+                  <>
+                    <span className="text-twine-700 mr-1 mt-2 block text-base">
+                      {step.smallText}
+                    </span>
+                  </>
                 )}
               </li>
             ))}
@@ -109,13 +118,20 @@ const Step1: React.FC<Step1Props> = ({ handleBackClick }) => {
                         href="#"
                         onClick={() => {
                           toast.toast({
-                            description: <ToastTimer time={step.timer} />
+                            description: <ToastTimer time={step.timer} />,
                           });
                         }}
                         className="text-blue-500 underline"
                       >
                         <PlayCircle className="inline mb-1 text-twine-600 hover:text-twine-800" />
                       </a>
+                    )}
+                    {step.smallText && (
+                      <>
+                        <span className="text-twine-700 mr-1 mt-2 block text-base">
+                          {step.smallText}
+                        </span>
+                      </>
                     )}
                   </p>
                 </CarouselItem>
