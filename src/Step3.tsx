@@ -28,7 +28,7 @@ const steps = [
     timer: 900, // 15 minutes in seconds
   },
   {
-    text: "Take the bread out and let it cool for 5 minutes , then turn out the bread onto a wire rack",
+    text: "Take the bread out and let it cool for 5 minutes, then turn out the bread onto a wire rack",
     image: "path/to/image5.jpg",
     timer: 300, // 5 minutes in seconds
   },
@@ -55,7 +55,7 @@ const Step3: React.FC<Step3Props> = ({ handleBackClick }) => {
         <h3 className="text-sm tracking-wider text-twine-900 font-medium">
           STEP 3
         </h3>
-        <h1 className="text-3xl text-twine-950 mb-8 font-serif">Mixing</h1>
+        <h1 className="text-3xl text-twine-950 mb-8 font-serif">Baking</h1>
 
         {showAsList && (
           <ol className="list-decimal text-left ml-6">

@@ -53,7 +53,7 @@ const Step2: React.FC<Step2Props> = ({ handleBackClick }) => {
         <h3 className="text-sm tracking-wider text-twine-900 font-medium">
           STEP 2
         </h3>
-        <h1 className="text-3xl text-twine-950 mb-8 font-serif">Mixing</h1>
+        <h1 className="text-3xl text-twine-950 mb-8 font-serif">The Knock Back</h1>
 
         {showAsList && (
           <ol className="list-decimal text-left ml-6">
