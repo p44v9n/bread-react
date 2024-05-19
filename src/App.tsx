@@ -8,7 +8,7 @@ import Intro from "./Intro";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
-import brid from "./assets/bread.svg";
+import brid from "./assets/images/bread.svg";
 // import { MoveLeft, MoveRight, RotateCcw } from "lucide-react";
 import tapSound1 from "@/assets/sounds/tap1.wav";
 import tapSound2 from "@/assets/sounds/tap2.wav";

@@ -1,5 +1,5 @@
 import "./App.css";
-import brid from "./assets/bread.svg";
+import brid from "./assets/images/bread.svg";
 
 export default function Splash() {
 
