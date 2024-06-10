@@ -69,3 +69,28 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+.distorted-text-container::before {
+  content: "";
+  display: none; /* Hide the pseudo-element itself */
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.distorted-text-container::before {
+  content: '<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"><defs><filter id="n1"><feTurbulence type="fractalNoise" baseFrequency="0.001 0.001" numOctaves="5" result="NOISE" seed="120248"></feTurbulence><feGaussianBlur in="SourceGraphic" result="BLURRED" stdDeviation="0"></feGaussianBlur><feDisplacementMap in2="NOISE" in="BLURRED" scale="66" xChannelSelector="R" yChannelSelector="R" result="DISPLACED"></feDisplacementMap></filter></defs></svg>';
+}
+
+.distorted-text {
+  filter: url('#n1');
+  animation: animateNoise 5s infinite;
+}
+
+.distorted-text {
+  filter: url(#n1);
+  font-size: 2rem; /* Example styling */
+  color: #82b3ca;  /* Example styling */
+}

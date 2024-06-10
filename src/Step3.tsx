@@ -24,7 +24,7 @@ const steps = [
         minutes
       </>
     ),
-    image: "path/to/image1.jpg",
+    image: "src/assets/images/step3-1.png",
     timer: 900, // 15 minutes in seconds
   },
   {
@@ -34,24 +34,19 @@ const steps = [
         another 15 minutes.
       </>
     ),
-    image: "path/to/image2.jpg",
+    image: "src/assets/images/step3-2.png",
     timer: 900, // 15 minutes in seconds
     smallText:
       "Keep an eye on it — every oven is different, so you may need longer or shorter.",
   },
   {
-    text: "Take the bread out and let it cool for 5 minutes, then turn out the bread onto a wire rack",
-    image: "path/to/image5.jpg",
-    timer: 300, // 5 minutes in seconds
-  },
-  {
     text: "Wait at least half an hour before cutting into it — the inside is still baking and needs to cool down!",
-    image: "path/to/image6.jpg",
+    image: "src/assets/images/step3-3.png"
   },
 ];
 
 const Step3: React.FC<Step3Props> = ({ handleBackClick }) => {
-  const [showAsList, setShowAsList] = useState(true);
+  const [showAsList, setShowAsList] = useState(false);
   const toast = useToast();
 
   return (

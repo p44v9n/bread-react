@@ -19,37 +19,37 @@ interface Step1Props {
 const steps = [
   {
     text: "Combine 450ml of water and 7g of instant yeast in the mixing bowl, until there are no clumps.",
-    image: "path/to/image1.jpg",
+    image: "src/assets/images/step1-1.png",
   },
   {
     text: "Add in 750g of bread flour, 12g of salt, and 25ml of olive oil, and mix until all ingredients are combined.",
-    image: "path/to/image2.jpg",
+    image: "src/assets/images/step1-2.png",
     smallText:
       "For a heartier bread, use 500g of strong white bread flour and 250g of wholemeal flour.",
   },
   {
     text: "Turn out onto a clean surface and knead for 8 minutes.",
-    image: "path/to/image3.jpg",
+    image: "src/assets/images/step1-3.png",
     timer: 480, // 8 minutes in seconds
   },
   {
     text: "Let the dough sit for 3 minutes.",
-    image: "path/to/image4.jpg",
+    image: "src/assets/images/step1-4.png",
     timer: 180, // 3 minutes in seconds
   },
   {
     text: "Shape into a ball, then use a dough scraper to lift back into the mixing bowl.",
-    image: "path/to/image5.jpg",
+    image: "src/assets/images/step1-5.png",
   },
   {
     text: "Add a little dusting of flour to keep the moisture in, then cover with a tea towel and rest for 90 minutes.",
-    image: "path/to/image6.jpg",
+    image: "src/assets/images/step1-6.png",
     timer: 5400, // 90 minutes in seconds
   },
 ];
 
 const Step1: React.FC<Step1Props> = ({ handleBackClick }) => {
-  const [showAsList, setShowAsList] = useState(true);
+  const [showAsList, setShowAsList] = useState(false);
   const toast = useToast();
 
   return (
@@ -70,7 +70,7 @@ const Step1: React.FC<Step1Props> = ({ handleBackClick }) => {
         {showAsList && (
           <ol className="list-decimal text-left ml-6">
             {steps.map((step, index) => (
-              <li key={index} className="text-xl text-twine-900 mb-8">
+              <li key={index} className="distorted-text text-xl text-twine-900 mb-8">
                 <span className="mr-1">{step.text}</span>
                 {step.timer && (
                   <a
