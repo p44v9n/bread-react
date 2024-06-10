@@ -3,6 +3,7 @@
 React + Tailwind + TypeScript + Vite + Bun
 
 `bun run dev --host` to run dev server locally
+
 `bun run build` to build (this is what Netlify is doing)
 
 “Damn he’s on bun his build times are fast damn” — liamp.uk
