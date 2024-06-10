@@ -70,7 +70,7 @@ const Step1: React.FC<Step1Props> = ({ handleBackClick }) => {
         {showAsList && (
           <ol className="list-decimal text-left ml-6">
             {steps.map((step, index) => (
-              <li key={index} className="distorted-text text-xl text-twine-900 mb-8">
+              <li key={index} className="text-xl text-twine-900 mb-8">
                 <span className="mr-1">{step.text}</span>
                 {step.timer && (
                   <a

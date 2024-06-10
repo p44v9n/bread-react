@@ -97,7 +97,7 @@ function App() {
 
   return (
     <div className="bg-twine-50 max-w-screen-sm w-screen flex flex-col min-h-dvh justify-between align-middle px-8 pt-8 h-max">
-      <div className="distorted-text-container">
+      <div>
         {content}
       </div>
       <ContinueButton step={step} onClick={nextClick} />
