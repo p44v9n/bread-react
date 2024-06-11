@@ -19,31 +19,31 @@ interface Step1Props {
 const steps = [
   {
     text: "Combine 450ml of water and 7g of instant yeast in the mixing bowl, until there are no clumps.",
-    image: "src/assets/images/step1-1.png",
+    image: "./assets/images/step1-1.png",
   },
   {
     text: "Add in 750g of bread flour, 12g of salt, and 25ml of olive oil, and mix until all ingredients are combined.",
-    image: "src/assets/images/step1-2.png",
+    image: "./assets/images/step1-2.png",
     smallText:
       "For a heartier bread, use 500g of strong white bread flour and 250g of wholemeal flour.",
   },
   {
     text: "Turn out onto a clean surface and knead for 8 minutes.",
-    image: "src/assets/images/step1-3.png",
+    image: "./assets/images/step1-3.png",
     timer: 480, // 8 minutes in seconds
   },
   {
     text: "Let the dough sit for 3 minutes.",
-    image: "src/assets/images/step1-4.png",
+    image: "./assets/images/step1-4.png",
     timer: 180, // 3 minutes in seconds
   },
   {
     text: "Shape into a ball, then use a dough scraper to lift back into the mixing bowl.",
-    image: "src/assets/images/step1-5.png",
+    image: "./assets/images/step1-5.png",
   },
   {
     text: "Add a little dusting of flour to keep the moisture in, then cover with a tea towel and rest for 90 minutes.",
-    image: "src/assets/images/step1-6.png",
+    image: "./assets/images/step1-6.png",
     timer: 5400, // 90 minutes in seconds
   },
 ];

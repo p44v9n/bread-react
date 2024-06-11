@@ -19,15 +19,15 @@ interface Step2Props {
 const steps = [
   {
     text: "Your dough should have doubled in size. Knock back the air and then reshape it into a ball.",
-    image: "src/assets/images/step2-1.png",
+    image: "./assets/images/step2-1.png",
   },
   {
     text: "Oil the Dutch oven or casserole dish, making sure to oil the walls as well as the base, then place the dough inside.",
-    image: "src/assets/images/step2-2.png",
+    image: "./assets/images/step2-2.png",
   },
   {
     text: "Add a little dusting of flour to keep the moisture in, then cover with a tea towel and rest for another 90 minutes.",
-    image: "src/assets/images/step2-3.png",
+    image: "./assets/images/step2-3.png",
     timer: 5400, // 90 minutes in seconds
     smallText:
       "10 minutes before finishing this second prove, preheat the oven to 220ºC.",

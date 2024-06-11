@@ -24,7 +24,7 @@ const steps = [
         minutes
       </>
     ),
-    image: "src/assets/images/step3-1.png",
+    image: "./assets/images/step3-1.png",
     timer: 900, // 15 minutes in seconds
   },
   {
@@ -34,14 +34,14 @@ const steps = [
         another 15 minutes.
       </>
     ),
-    image: "src/assets/images/step3-2.png",
+    image: "./assets/images/step3-2.png",
     timer: 900, // 15 minutes in seconds
     smallText:
       "Keep an eye on it — every oven is different, so you may need longer or shorter.",
   },
   {
     text: "Wait at least half an hour before cutting into it — the inside is still baking and needs to cool down!",
-    image: "src/assets/images/step3-3.png"
+    image: "./assets/images/step3-3.png"
   },
 ];
 
