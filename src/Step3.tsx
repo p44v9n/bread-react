@@ -11,6 +11,10 @@ import {
   CarouselDots,
 } from "@/components/ui/carousel";
 import { PlayCircle } from "lucide-react";
+import image1 from "./assets/images/step3-1.png";
+import image2 from "./assets/images/step3-2.png";
+import image3 from "./assets/images/step3-3.png";
+
 
 interface Step3Props {
   handleBackClick: () => void;
@@ -24,7 +28,7 @@ const steps = [
         minutes
       </>
     ),
-    image: "./assets/images/step3-1.png",
+    image: image1,
     timer: 900, // 15 minutes in seconds
   },
   {
@@ -34,14 +38,14 @@ const steps = [
         another 15 minutes.
       </>
     ),
-    image: "./assets/images/step3-2.png",
+    image: image2,
     timer: 900, // 15 minutes in seconds
     smallText:
       "Keep an eye on it — every oven is different, so you may need longer or shorter.",
   },
   {
     text: "Wait at least half an hour before cutting into it — the inside is still baking and needs to cool down!",
-    image: "./assets/images/step3-3.png"
+    image: image3
   },
 ];
 

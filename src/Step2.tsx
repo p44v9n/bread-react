@@ -11,6 +11,9 @@ import {
   CarouselDots,
 } from "@/components/ui/carousel";
 import { PlayCircle } from "lucide-react";
+import image1 from "./assets/images/step2-1.png";
+import image2 from "./assets/images/step2-2.png";
+import image3 from "./assets/images/step2-3.png";
 
 interface Step2Props {
   handleBackClick: () => void;
@@ -19,15 +22,15 @@ interface Step2Props {
 const steps = [
   {
     text: "Your dough should have doubled in size. Knock back the air and then reshape it into a ball.",
-    image: "./assets/images/step2-1.png",
+    image: image1,
   },
   {
     text: "Oil the Dutch oven or casserole dish, making sure to oil the walls as well as the base, then place the dough inside.",
-    image: "./assets/images/step2-2.png",
+    image: image2,
   },
   {
     text: "Add a little dusting of flour to keep the moisture in, then cover with a tea towel and rest for another 90 minutes.",
-    image: "./assets/images/step2-3.png",
+    image: image3,
     timer: 5400, // 90 minutes in seconds
     smallText:
       "10 minutes before finishing this second prove, preheat the oven to 220ºC.",
