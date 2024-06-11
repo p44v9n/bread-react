@@ -4,11 +4,11 @@ import BackButton from "./components/BackButton";
 import OverviewToggle from "./components/OverviewToggle";
 import { useToast } from "@/components/ui/use-toast";
 import ToastTimer from "./components/ToastTimer";
-import image1 from "./assets/images/step1-1";
-import image2 from "./assets/images/step1-2";
-import image3 from "./assets/images/step1-3";
-import image4 from "./assets/images/step1-4";
-import image5 from "./assets/images/step1-5";
+import image1 from "./assets/images/step1-1.png";
+import image2 from "./assets/images/step1-2.png";
+import image3 from "./assets/images/step1-3.png";
+import image4 from "./assets/images/step1-4.png";
+import image5 from "./assets/images/step1-5.png";
 import image6 from "./assets/images/step1-6.png";
 
 import {
@@ -26,31 +26,31 @@ interface Step1Props {
 const steps = [
   {
     text: "Combine 450ml of water and 7g of instant yeast in the mixing bowl, until there are no clumps.",
-    image: {image1},
+    image: image1,
   },
   {
     text: "Add in 750g of bread flour, 12g of salt, and 25ml of olive oil, and mix until all ingredients are combined.",
-    image: {image2},
+    image: image2,
     smallText:
       "For a heartier bread, use 500g of strong white bread flour and 250g of wholemeal flour.",
   },
   {
     text: "Turn out onto a clean surface and knead for 8 minutes.",
-    image: {image3},
+    image: image3,
     timer: 480, // 8 minutes in seconds
   },
   {
     text: "Let the dough sit for 3 minutes.",
-    image: {image4},
+    image: image4,
     timer: 180, // 3 minutes in seconds
   },
   {
     text: "Shape into a ball, then use a dough scraper to lift back into the mixing bowl.",
-    image: {image5},
+    image: image5,
   },
   {
     text: "Add a little dusting of flour to keep the moisture in, then cover with a tea towel and rest for 90 minutes.",
-    image: {image6},
+    image: image6,
     timer: 5400, // 90 minutes in seconds
   },
 ];
