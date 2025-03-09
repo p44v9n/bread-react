@@ -125,11 +125,14 @@ const Step3: React.FC<Step3Props> = ({
                       key={index}
                       className="basis-full bg-twine-50 px-8 ml-4 text-center text-balance flex flex-col justify-center"
                     >
-                      <img
-                        src={step.image}
-                        alt={`Step ${index + 1}`}
-                        className="mx-auto w-32 mb-4"
-                      />
+                      <div className="h-32 w-32 flex items-center justify-center mx-auto mb-4 relative">
+                        <img
+                          src={step.image}
+                          alt={`Step ${index + 1}`}
+                          className="max-h-full max-w-full object-contain"
+                          loading="lazy"
+                        />
+                      </div>
                       <p className="text-xl leading-relaxed text-center text-balance text-twine-900">
                         <span className="mr-2">{step.text}</span>
                         {step.timer && (
