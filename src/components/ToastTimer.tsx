@@ -108,9 +108,9 @@ export default function ToastTimer({ time }: { time: number }) {
   }
 
   return (
-    <div className="text-center">
+    <div className="text-center text-balance">
       <Progress value={timeAsPercent} className="my-4 w-full" />
-      <p className="text-4xl text-twine-950 text-center">
+      <p className="text-4xl text-twine-950 text-center text-balance">
         {timeAsMinutes(timeLeft) + ":" + timeAsSeconds(timeLeft)}
       </p>
     </div>

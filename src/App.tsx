@@ -25,6 +25,7 @@ function App() {
   const [currentCarousel, setCurrentCarousel] = useState<CarouselApi | null>(
     null
   );
+  const [showAsList, setShowAsList] = useState(false);
 
   // Load your sounds using useSound
   const [playSound1] = useSound(tapSound1);
@@ -49,11 +50,18 @@ function App() {
   };
 
   function nextClick() {
-    if (currentCarousel && currentCarousel.canScrollNext()) {
+    // If in list view, always go to next step
+    if (showAsList) {
+      setStep((step + 1) % 6);
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+      playTap();
+    } else if (currentCarousel && currentCarousel.canScrollNext()) {
+      // If in carousel view and can scroll next, scroll to next slide
       currentCarousel.scrollNext();
       playTap();
     } else {
-      setStep((step + 1) % 6); //on click, add 1 to step
+      // Otherwise go to next step
+      setStep((step + 1) % 6);
       document.body.scrollTop = document.documentElement.scrollTop = 0;
       playTap();
     }
@@ -62,6 +70,10 @@ function App() {
   const backClick = () => {
     setStep(step - 1);
     playTap();
+  };
+
+  const handleToggleView = (isListView: boolean) => {
+    setShowAsList(isListView);
   };
 
   let content;
@@ -79,6 +91,8 @@ function App() {
         <Step1
           handleBackClick={backClick}
           onCarouselChange={setCurrentCarousel}
+          showAsList={showAsList}
+          onToggleView={handleToggleView}
         />
       </>
     );
@@ -88,6 +102,8 @@ function App() {
         <Step2
           handleBackClick={backClick}
           onCarouselChange={setCurrentCarousel}
+          showAsList={showAsList}
+          onToggleView={handleToggleView}
         />
       </>
     );
@@ -97,13 +113,15 @@ function App() {
         <Step3
           handleBackClick={backClick}
           onCarouselChange={setCurrentCarousel}
+          showAsList={showAsList}
+          onToggleView={handleToggleView}
         />
       </>
     );
   } else {
     content = (
-      <div className="flex flex-col text-center mt-40">
-        <h1 className="text-center text-5xl font-serif mb-20 text-twine-900">
+      <div className="flex flex-col text-center text-balance mt-40">
+        <h1 className="text-center text-balance text-5xl font-serif mb-20 text-twine-900">
           Nom nom!
         </h1>
         <div className="mx-auto">
@@ -114,8 +132,8 @@ function App() {
   }
 
   return (
-    <div className="bg-twine-50 max-w-screen-sm w-screen flex flex-col min-h-dvh justify-between align-middle px-8 pt-8 h-max">
-      <div>{content}</div>
+    <div className="bg-twine-50 max-w-screen-sm w-screen flex flex-col h-[100dvh] justify-between overflow-hidden fixed inset-0 px-8 pt-8">
+      <div className="flex-1 overflow-hidden">{content}</div>
       <ContinueButton step={step} onClick={nextClick} />
     </div>
   );
