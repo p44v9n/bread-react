@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import BackButton from "./components/BackButton";
 import OverviewToggle from "./components/OverviewToggle";
 import { useToast } from "@/components/ui/use-toast";
@@ -16,16 +16,18 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselDots,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import { PlayCircle } from "lucide-react";
 
 interface Step1Props {
   handleBackClick: () => void;
+  onCarouselChange?: (api: CarouselApi) => void;
 }
 
 const steps = [
   {
-    text: "Combine 450ml of water and 7g of instant yeast in the mixing bowl, until there are no clumps.",
+    text: "Pour 450ml of water and 7g of instant yeast in the mixing bowl, whisking togetheruntil there are no clumps.",
     image: image1,
   },
   {
@@ -55,7 +57,7 @@ const steps = [
   },
 ];
 
-const Step1: React.FC<Step1Props> = ({ handleBackClick }) => {
+const Step1: React.FC<Step1Props> = ({ handleBackClick, onCarouselChange }) => {
   const [showAsList, setShowAsList] = useState(false);
   const toast = useToast();
 
@@ -105,7 +107,7 @@ const Step1: React.FC<Step1Props> = ({ handleBackClick }) => {
         )}
 
         {!showAsList && (
-          <Carousel>
+          <Carousel setApi={onCarouselChange}>
             <CarouselContent className="mx-2 -ml-4">
               {steps.map((step, index) => (
                 <CarouselItem

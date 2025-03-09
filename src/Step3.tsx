@@ -9,15 +9,16 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselDots,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import { PlayCircle } from "lucide-react";
 import image1 from "./assets/images/step3-1.png";
 import image2 from "./assets/images/step3-2.png";
 import image3 from "./assets/images/step3-3.png";
 
-
 interface Step3Props {
   handleBackClick: () => void;
+  onCarouselChange?: (api: CarouselApi) => void;
 }
 
 const steps = [
@@ -45,11 +46,11 @@ const steps = [
   },
   {
     text: "Wait at least half an hour before cutting into it — the inside is still baking and needs to cool down!",
-    image: image3
+    image: image3,
   },
 ];
 
-const Step3: React.FC<Step3Props> = ({ handleBackClick }) => {
+const Step3: React.FC<Step3Props> = ({ handleBackClick, onCarouselChange }) => {
   const [showAsList, setShowAsList] = useState(false);
   const toast = useToast();
 
@@ -99,7 +100,7 @@ const Step3: React.FC<Step3Props> = ({ handleBackClick }) => {
         )}
 
         {!showAsList && (
-          <Carousel>
+          <Carousel setApi={onCarouselChange}>
             <CarouselContent className="mx-2 -ml-4">
               {steps.map((step, index) => (
                 <CarouselItem
@@ -130,7 +131,7 @@ const Step3: React.FC<Step3Props> = ({ handleBackClick }) => {
                     {step.smallText && (
                       <>
                         <span className="text-twine-700 mr-1 mt-2 block text-base">
-                          {step.text}
+                          {step.smallText}
                         </span>
                       </>
                     )}

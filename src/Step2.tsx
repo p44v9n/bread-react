@@ -9,6 +9,7 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselDots,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import { PlayCircle } from "lucide-react";
 import image1 from "./assets/images/step2-1.png";
@@ -17,6 +18,7 @@ import image3 from "./assets/images/step2-3.png";
 
 interface Step2Props {
   handleBackClick: () => void;
+  onCarouselChange?: (api: CarouselApi) => void;
 }
 
 const steps = [
@@ -37,7 +39,7 @@ const steps = [
   },
 ];
 
-const Step2: React.FC<Step2Props> = ({ handleBackClick }) => {
+const Step2: React.FC<Step2Props> = ({ handleBackClick, onCarouselChange }) => {
   const [showAsList, setShowAsList] = useState(false);
   const toast = useToast();
 
@@ -89,7 +91,7 @@ const Step2: React.FC<Step2Props> = ({ handleBackClick }) => {
         )}
 
         {!showAsList && (
-          <Carousel>
+          <Carousel setApi={onCarouselChange}>
             <CarouselContent className="mx-2 -ml-4">
               {steps.map((step, index) => (
                 <CarouselItem

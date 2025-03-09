@@ -18,9 +18,13 @@ import tapSound5 from "@/assets/sounds/tap5.m4a";
 // import OverviewToggle from "./components/OverviewToggle";
 // import Step1Carousel from "./Step1Carousel";
 import ContinueButton from "./components/ContinueButton";
+import { type CarouselApi } from "@/components/ui/carousel";
 
 function App() {
   const [step, setStep] = useState(0); //step, setter, initial state
+  const [currentCarousel, setCurrentCarousel] = useState<CarouselApi | null>(
+    null
+  );
 
   // Load your sounds using useSound
   const [playSound1] = useSound(tapSound1);
@@ -45,9 +49,14 @@ function App() {
   };
 
   function nextClick() {
-    setStep((step + 1) % 6); //on click, add 1 to step
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
-    playTap();
+    if (currentCarousel && currentCarousel.canScrollNext()) {
+      currentCarousel.scrollNext();
+      playTap();
+    } else {
+      setStep((step + 1) % 6); //on click, add 1 to step
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+      playTap();
+    }
   }
 
   const backClick = () => {
@@ -67,19 +76,28 @@ function App() {
   } else if (step === 2) {
     content = (
       <>
-        <Step1 handleBackClick={backClick} />
+        <Step1
+          handleBackClick={backClick}
+          onCarouselChange={setCurrentCarousel}
+        />
       </>
     );
   } else if (step === 3) {
     content = (
       <>
-        <Step2  handleBackClick={backClick} />
+        <Step2
+          handleBackClick={backClick}
+          onCarouselChange={setCurrentCarousel}
+        />
       </>
     );
   } else if (step === 4) {
     content = (
       <>
-        <Step3 handleBackClick={backClick}  />
+        <Step3
+          handleBackClick={backClick}
+          onCarouselChange={setCurrentCarousel}
+        />
       </>
     );
   } else {
@@ -97,9 +115,7 @@ function App() {
 
   return (
     <div className="bg-twine-50 max-w-screen-sm w-screen flex flex-col min-h-dvh justify-between align-middle px-8 pt-8 h-max">
-      <div>
-        {content}
-      </div>
+      <div>{content}</div>
       <ContinueButton step={step} onClick={nextClick} />
     </div>
   );
