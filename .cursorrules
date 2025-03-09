@@ -1,0 +1,21 @@
+## Project Structure
+
+- This is a frontend-only project
+- No server or backend components should be added
+- Static site deployment on Netlify
+- Using shadcn components and Tailwind CSS for theming
+
+## Build and Package Management
+
+- Use Bun exclusively for all operations:
+  - Package management (bun install)
+  - Running scripts (bun run)
+  - Building (bun run build)
+- Do not use npm or yarn commands
+- Avoid suggesting npm-specific configurations or flags
+
+## Deployment
+
+- Netlify deployment should use Bun for all build steps
+- Required Bun installation in build environment
+- Build command should use Bun paths explicitly
