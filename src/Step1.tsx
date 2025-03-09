@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import BackButton from "./components/BackButton";
 import OverviewToggle from "./components/OverviewToggle";
 import { useToast } from "@/components/ui/use-toast";

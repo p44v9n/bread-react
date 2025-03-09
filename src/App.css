@@ -3,30 +3,31 @@
 @tailwind utilities;
 
 @layer base {
+  /* Declare fonts before they're used */
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300 800; /* Support variable font weight range */
+    font-display: optional; /* Better for fonts that are critical to the UI */
+    src: url(../src/assets/fonts/Inter-VariableFont_slnt,wght.woff2)
+      format("woff2");
+  }
+
+  @font-face {
+    font-family: "Acorn";
+    font-style: normal;
+    font-weight: 800;
+    font-display: optional;
+    src: url(../src/assets/fonts/Acorn-SemiBold.woff2) format("woff2");
+  }
+
   :root {
-    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-
-  @font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 300;
-    font-display: swap;
-    src: url(../src/assets/fonts/Inter-VariableFont_slnt,wght.woff2) format('woff2');
-  }
-
-
-  @font-face {
-    font-family: 'Acorn';
-    font-style: normal;
-    font-weight: 800;
-    font-display: swap;
-    src: url(../src/assets/fonts/Acorn-SemiBold.woff2) format('woff2');
   }
 
   * {
