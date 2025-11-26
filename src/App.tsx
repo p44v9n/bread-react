@@ -1,7 +1,8 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // @ts-ignore
 import { useSound } from "use-sound";
+import ReactConfetti from "react-confetti";
 // import { Button } from "@/components/ui/button";
 import Splash from "./Splash";
 import Intro from "./Intro";
@@ -25,7 +26,24 @@ function App() {
   const [currentCarousel, setCurrentCarousel] = useState<CarouselApi | null>(
     null
   );
-  const [showAsList, setShowAsList] = useState(false);
+  const [showAsList, setShowAsList] = useState(true);
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  // Update window size on resize
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Load your sounds using useSound
   const [playSound1] = useSound(tapSound1);
@@ -120,7 +138,23 @@ function App() {
     );
   } else {
     content = (
-      <div className="flex flex-col text-center text-balance mt-40">
+      <div className="flex flex-col text-center text-balance mt-40 relative">
+        {step === 5 && (
+          <ReactConfetti
+            width={windowSize.width}
+            height={windowSize.height}
+            recycle={true}
+            numberOfPieces={200}
+            gravity={0.3}
+            colors={["#E6D5B8", "#D4B08C", "#C19A6B", "#A67B5B", "#8B4513"]}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              pointerEvents: "none",
+            }}
+          />
+        )}
         <h1 className="text-center text-balance text-5xl font-serif mb-20 text-twine-900">
           Nom nom!
         </h1>

@@ -44,11 +44,11 @@ const steps = [
 const Step2: React.FC<Step2Props> = ({
   handleBackClick,
   onCarouselChange,
-  showAsList = false,
+  showAsList = true,
   onToggleView,
 }) => {
   // Use local state only if props are not provided
-  const [localShowAsList, setLocalShowAsList] = useState(false);
+  const [localShowAsList, setLocalShowAsList] = useState(true);
   const toast = useToast();
 
   // Use props if provided, otherwise use local state

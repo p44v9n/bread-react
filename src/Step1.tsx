@@ -39,7 +39,7 @@ const steps = [
       "For a heartier bread, use 500g of strong white bread flour and 250g of wholemeal flour.",
   },
   {
-    text: "Turn out onto a clean surface and knead for 8 minutes.",
+    text: "Turn out onto a clean surface and knead for 8 minutes. Don’t add any extra flour.",
     image: image3,
     timer: 480, // 8 minutes in seconds
   },
@@ -62,11 +62,11 @@ const steps = [
 const Step1: React.FC<Step1Props> = ({
   handleBackClick,
   onCarouselChange,
-  showAsList = false,
+  showAsList = true,
   onToggleView,
 }) => {
   // Use local state only if props are not provided
-  const [localShowAsList, setLocalShowAsList] = useState(false);
+  const [localShowAsList, setLocalShowAsList] = useState(true);
   const toast = useToast();
 
   // Use props if provided, otherwise use local state
