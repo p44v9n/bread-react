@@ -16,7 +16,7 @@ function App() {
   // Calculate yeast amount based on temperature and recipe
   const getYeastAmount = () => {
     if (selectedRecipe === "focaccia") {
-      return temperature === "cold" ? 10 : 12;
+      return temperature === "cold" ? 12 : 10;
     }
     return temperature === "cold" ? 10 : 7;
   };
