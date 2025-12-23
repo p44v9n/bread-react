@@ -1,174 +1,82 @@
 import "./App.css";
-import { useState, useEffect } from "react";
-// @ts-ignore
-import { useSound } from "use-sound";
-import ReactConfetti from "react-confetti";
-// import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import Splash from "./Splash";
+import RecipeSelect, { type RecipeType } from "./RecipeSelect";
+import TemperatureSelect, { type Temperature } from "./TemperatureSelect";
 import Intro from "./Intro";
-import Step1 from "./Step1";
-import Step2 from "./Step2";
-import Step3 from "./Step3";
-import brid from "./assets/images/bread.svg";
-// import { MoveLeft, MoveRight, RotateCcw } from "lucide-react";
-import tapSound1 from "@/assets/sounds/tap1.wav";
-import tapSound2 from "@/assets/sounds/tap2.wav";
-import tapSound3 from "@/assets/sounds/tap3.wav";
-import tapSound4 from "@/assets/sounds/tap4.m4a";
-import tapSound5 from "@/assets/sounds/tap5.m4a";
-// import OverviewToggle from "./components/OverviewToggle";
-// import Step1Carousel from "./Step1Carousel";
+import Recipe from "./Recipe";
 import ContinueButton from "./components/ContinueButton";
-import { type CarouselApi } from "@/components/ui/carousel";
+import { playTapSound } from "./lib/tapSound";
 
 function App() {
-  const [step, setStep] = useState(0); //step, setter, initial state
-  const [currentCarousel, setCurrentCarousel] = useState<CarouselApi | null>(
-    null
-  );
-  const [showAsList, setShowAsList] = useState(true);
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
+  const [step, setStep] = useState(0);
+  const [selectedRecipe, setSelectedRecipe] = useState<RecipeType | null>(null);
+  const [temperature, setTemperature] = useState<Temperature | null>(null);
 
-  // Update window size on resize
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Load your sounds using useSound
-  const [playSound1] = useSound(tapSound1);
-  const [playSound2] = useSound(tapSound2);
-  const [playSound3] = useSound(tapSound3);
-  const [playSound4] = useSound(tapSound4);
-  const [playSound5] = useSound(tapSound5);
-
-  // Array of play functions
-  const playFunctions = [
-    playSound1,
-    playSound2,
-    playSound3,
-    playSound4,
-    playSound5,
-  ];
-
-  // Function to play a random tap sound
-  const playTap = () => {
-    const randomIndex = Math.floor(Math.random() * playFunctions.length);
-    playFunctions[randomIndex]();
+  // Calculate yeast amount based on temperature and recipe
+  const getYeastAmount = () => {
+    if (selectedRecipe === "focaccia") {
+      return temperature === "cold" ? 10 : 12;
+    }
+    return temperature === "cold" ? 10 : 7;
   };
+  const yeastAmount = getYeastAmount();
 
   function nextClick() {
-    // If in list view, always go to next step
-    if (showAsList) {
-      setStep((step + 1) % 6);
-      document.body.scrollTop = document.documentElement.scrollTop = 0;
-      playTap();
-    } else if (currentCarousel && currentCarousel.canScrollNext()) {
-      // If in carousel view and can scroll next, scroll to next slide
-      currentCarousel.scrollNext();
-      playTap();
-    } else {
-      // Otherwise go to next step
-      setStep((step + 1) % 6);
-      document.body.scrollTop = document.documentElement.scrollTop = 0;
-      playTap();
-    }
+    setStep(step + 1);
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    playTapSound();
   }
+
+  const handleRecipeSelect = (recipe: RecipeType) => {
+    setSelectedRecipe(recipe);
+    setStep(2); // Move to temperature select after choosing recipe
+    playTapSound();
+  };
+
+  const handleTemperatureSelect = (temp: Temperature) => {
+    setTemperature(temp);
+    setStep(3); // Move to Intro after selecting temperature
+    playTapSound();
+  };
 
   const backClick = () => {
     setStep(step - 1);
-    playTap();
-  };
-
-  const handleToggleView = (isListView: boolean) => {
-    setShowAsList(isListView);
+    playTapSound();
   };
 
   let content;
   if (step === 0) {
     content = <Splash />;
   } else if (step === 1) {
-    content = (
-      <>
-        <Intro handleBackClick={backClick} />
-      </>
-    );
+    content = <RecipeSelect onSelect={handleRecipeSelect} />;
   } else if (step === 2) {
     content = (
-      <>
-        <Step1
-          handleBackClick={backClick}
-          onCarouselChange={setCurrentCarousel}
-          showAsList={showAsList}
-          onToggleView={handleToggleView}
-        />
-      </>
+      <TemperatureSelect
+        handleBackClick={backClick}
+        onSelect={handleTemperatureSelect}
+      />
     );
   } else if (step === 3) {
-    content = (
-      <>
-        <Step2
-          handleBackClick={backClick}
-          onCarouselChange={setCurrentCarousel}
-          showAsList={showAsList}
-          onToggleView={handleToggleView}
-        />
-      </>
-    );
-  } else if (step === 4) {
-    content = (
-      <>
-        <Step3
-          handleBackClick={backClick}
-          onCarouselChange={setCurrentCarousel}
-          showAsList={showAsList}
-          onToggleView={handleToggleView}
-        />
-      </>
-    );
+    content = <Intro handleBackClick={backClick} yeastAmount={yeastAmount} />;
   } else {
+    // step === 4: Recipe page (final step)
     content = (
-      <div className="flex flex-col text-center text-balance mt-40 relative">
-        {step === 5 && (
-          <ReactConfetti
-            width={windowSize.width}
-            height={windowSize.height}
-            recycle={true}
-            numberOfPieces={200}
-            gravity={0.3}
-            colors={["#E6D5B8", "#D4B08C", "#C19A6B", "#A67B5B", "#8B4513"]}
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              pointerEvents: "none",
-            }}
-          />
-        )}
-        <h1 className="text-center text-balance text-5xl font-serif mb-20 text-twine-900">
-          Nom nom!
-        </h1>
-        <div className="mx-auto">
-          <img src={brid} alt="" width="150" />
-        </div>
-      </div>
+      <Recipe
+        handleBackClick={backClick}
+        yeastAmount={yeastAmount}
+        recipeType={selectedRecipe}
+      />
     );
   }
+
+  // Only show continue button on splash and intro screens (steps 0 and 3)
+  const showContinueButton = step === 0 || step === 3;
 
   return (
     <div className="bg-twine-50 max-w-screen-sm w-screen flex flex-col h-[100dvh] justify-between overflow-hidden fixed inset-0 px-8 pt-8">
       <div className="flex-1 overflow-hidden">{content}</div>
-      <ContinueButton step={step} onClick={nextClick} />
+      {showContinueButton && <ContinueButton step={step} onClick={nextClick} />}
     </div>
   );
 }

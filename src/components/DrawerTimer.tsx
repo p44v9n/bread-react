@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { Progress } from "@/components/ui/progress";
 import {
   DrawerPortal,
@@ -14,48 +14,165 @@ import useSound from "use-sound";
 import finishedSound from "@/assets/sounds/finished.m4a";
 import expandSound from "@/assets/sounds/Expand.m4a";
 
+const STORAGE_KEY = "bread-drawer-timer";
+
+interface TimerState {
+  endTime: number;
+  totalDuration: number;
+  isPaused: boolean;
+  remainingWhenPaused: number;
+}
+
 export default function DrawerTimer({ time }: { time: number }) {
   const [isRunning, setIsRunning] = useState(false);
   const [timeLeft, setTimeLeft] = useState(time);
   const [timeAsPercent, setTimeAsPercent] = useState(100);
+  const endTimeRef = useRef<number>(0);
+  const totalDurationRef = useRef<number>(time);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const [play] = useSound(finishedSound);
   const [playExpand] = useSound(expandSound);
 
-  // when the drawer is opened from a new timer
+  // Save timer state to localStorage
+  const saveTimerState = useCallback(() => {
+    const state: TimerState = {
+      endTime: endTimeRef.current,
+      totalDuration: totalDurationRef.current,
+      isPaused: !isRunning,
+      remainingWhenPaused: timeLeft,
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }, [isRunning, timeLeft]);
+
+  // Clear saved timer state
+  const clearTimerState = useCallback(() => {
+    localStorage.removeItem(STORAGE_KEY);
+  }, []);
+
+  // Update timer display based on current time
+  const updateTimer = useCallback(() => {
+    if (!isRunning) return;
+
+    const now = Date.now();
+    const remaining = Math.max(0, endTimeRef.current - now);
+    const newTimeLeft = Math.ceil(remaining / 1000);
+
+    if (newTimeLeft <= 0) {
+      setTimeLeft(0);
+      setTimeAsPercent(0);
+      setIsRunning(false);
+      clearTimerState();
+      play();
+      return;
+    }
+
+    setTimeLeft(newTimeLeft);
+    setTimeAsPercent((newTimeLeft / totalDurationRef.current) * 100);
+  }, [isRunning, play, clearTimerState]);
+
+  // Restore timer state on mount
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const state: TimerState = JSON.parse(saved);
+        const now = Date.now();
+        
+        if (state.isPaused) {
+          // Timer was paused - restore paused state
+          setTimeLeft(state.remainingWhenPaused);
+          setTimeAsPercent((state.remainingWhenPaused / state.totalDuration) * 100);
+          totalDurationRef.current = state.totalDuration;
+          setIsRunning(false);
+        } else if (state.endTime > now) {
+          // Timer was running and hasn't expired
+          const remaining = Math.ceil((state.endTime - now) / 1000);
+          setTimeLeft(remaining);
+          setTimeAsPercent((remaining / state.totalDuration) * 100);
+          endTimeRef.current = state.endTime;
+          totalDurationRef.current = state.totalDuration;
+          setIsRunning(true);
+        } else {
+          // Timer expired while app was closed
+          setTimeLeft(0);
+          setTimeAsPercent(0);
+          clearTimerState();
+          play();
+        }
+      } catch {
+        clearTimerState();
+      }
+    }
+  }, []);
+
+  // When time prop changes (new timer started)
   useEffect(() => {
     setTimeLeft(time);
     setTimeAsPercent(100);
-    setIsRunning(false); // this autostarts the timer
+    setIsRunning(false);
+    totalDurationRef.current = time;
+    endTimeRef.current = 0;
+    clearTimerState();
     playExpand();
-  }, [time]);
+  }, [time, clearTimerState, playExpand]);
 
-  // while timeleft is changing / isrunning changes, countdown
+  // Main timer loop using setInterval with timestamp checking
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
     if (isRunning) {
-      interval = setInterval(() => {
-        setTimeLeft((prevTime) => {
-          const newTime = prevTime - 1;
-          if (newTime <= 0) {
-            clearInterval(interval!); // Clear interval if time is up
-            setIsRunning(false); // Stop the timer
-            setTimeAsPercent(0);
-            play();
-            return 0; // Don't allow the time to go below zero
-          }
-          setTimeAsPercent((newTime / time) * 100); // Update the time as percent
-          return newTime; // Update the time left
-        });
-      }, 1000);
-    } else if (interval) {
-      clearInterval(interval);
+      // Use setInterval but check actual timestamps for accuracy
+      intervalRef.current = setInterval(updateTimer, 250); // Check 4x per second for smoother updates
     }
 
     return () => {
-      if (interval) clearInterval(interval);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
     };
-  }, [isRunning, timeLeft]);
+  }, [isRunning, updateTimer]);
+
+  // Handle visibility change - recalculate when tab becomes visible
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden && isRunning) {
+        updateTimer();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [isRunning, updateTimer]);
+
+  // Save state before page unload
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (isRunning || timeLeft > 0) {
+        saveTimerState();
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [isRunning, timeLeft, saveTimerState]);
+
+  // Toggle play/pause
+  const toggleTimer = () => {
+    if (isRunning) {
+      // Pausing
+      setIsRunning(false);
+      saveTimerState();
+    } else {
+      // Resuming - set new end time based on remaining time
+      endTimeRef.current = Date.now() + timeLeft * 1000;
+      setIsRunning(true);
+      saveTimerState();
+    }
+  };
 
   function timeAsMinutes(time: number): string {
     return Math.floor(time / 60)
@@ -91,7 +208,7 @@ export default function DrawerTimer({ time }: { time: number }) {
                   </Button>
                 </DrawerClose>
                 <Button
-                  onClick={() => setIsRunning(!isRunning)}
+                  onClick={toggleTimer}
                   className="w-1/2 text-twine-950"
                   variant={"secondary"}
                   disabled={timeLeft <= 0}

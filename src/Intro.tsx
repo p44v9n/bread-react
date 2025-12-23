@@ -6,9 +6,10 @@ import { useState, useEffect, useRef } from "react";
 
 interface IntroProps {
   handleBackClick: () => void;
+  yeastAmount?: number;
 }
 
-const Intro: React.FC<IntroProps> = ({ handleBackClick }) => {
+const Intro: React.FC<IntroProps> = ({ handleBackClick, yeastAmount = 7 }) => {
   const [showFader, setShowFader] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -71,7 +72,7 @@ const Intro: React.FC<IntroProps> = ({ handleBackClick }) => {
               <li className="text-l text-twine-600 -mt-1 list-none">
                 + a little extra for dusting
               </li>
-              <li className="text-xl text-twine-900">7g instant yeast</li>
+              <li className="text-xl text-twine-900">{yeastAmount}g instant yeast</li>
               <li className="text-xl text-twine-900">12g table salt</li>
               <li className="text-xl text-twine-900">480ml water</li>
               <li className="text-xl text-twine-900">25ml olive oil</li>

@@ -7,6 +7,11 @@ interface ContinueButtonProps {
 }
 
 const ContinueButton: React.FC<ContinueButtonProps> = ({ step, onClick }) => {
+  // Hide button on recipe selection (step 1) and temperature selection (step 2) since user selects an option
+  if (step === 1 || step === 2) {
+    return <div className="my-8 h-12" />; // Placeholder to maintain layout
+  }
+
   return (
     <>
       {/* <div className=" w-screen"> */}
