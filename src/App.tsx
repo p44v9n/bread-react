@@ -30,7 +30,13 @@ function App() {
 
   const handleRecipeSelect = (recipe: RecipeType) => {
     setSelectedRecipe(recipe);
-    setStep(2); // Move to temperature select after choosing recipe
+    // Skip temperature selection for rotli
+    if (recipe === "rotli") {
+      setTemperature("normal"); // Set default temperature for rotli
+      setStep(3); // Move directly to Intro
+    } else {
+      setStep(2); // Move to temperature select after choosing recipe
+    }
     playTapSound();
   };
 
@@ -41,7 +47,12 @@ function App() {
   };
 
   const backClick = () => {
-    setStep(step - 1);
+    // If we're on Intro (step 3) and came from rotli (skipped temperature), go back to recipe select
+    if (step === 3 && selectedRecipe === "rotli") {
+      setStep(1);
+    } else {
+      setStep(step - 1);
+    }
     playTapSound();
   };
 
@@ -58,7 +69,13 @@ function App() {
       />
     );
   } else if (step === 3) {
-    content = <Intro handleBackClick={backClick} yeastAmount={yeastAmount} />;
+    content = (
+      <Intro
+        handleBackClick={backClick}
+        yeastAmount={yeastAmount}
+        recipeType={selectedRecipe}
+      />
+    );
   } else {
     // step === 4: Recipe page (final step)
     content = (

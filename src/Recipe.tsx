@@ -45,6 +45,9 @@ const getRecipeSections = (
   if (recipeType === "focaccia") {
     return getFocacciaSections(yeastAmount);
   }
+  if (recipeType === "rotli") {
+    return getRotliSections(yeastAmount);
+  }
   return [
     {
       title: "STEP 1",
@@ -206,6 +209,62 @@ const getFocacciaSections = (yeastAmount: number): Section[] => [
       {
         text: "Eat hot or cold, with plenty of olive oil!!",
         image: step3Image3,
+      },
+    ],
+  },
+];
+
+// TODO: Fill in the rotli recipe steps below
+const getRotliSections = (_yeastAmount: number): Section[] => [
+  {
+    title: "STEP 1",
+    subtitle: "Mixing",
+    steps: [
+      {
+        text: "Mix 25ml of veg oil into 125g of rotli flour, till it becomes a crumbly texture.",
+      },
+      {
+        text: "Add hot water to the mixture to form a dough. You should use between 60-90ml but it depends on how fresh the flour is and the water temperature.",
+      },
+      {
+        text: "Knead for around 3 minutes, then add a drop of oil and let the dough rest for 10 minutes",
+        smallText: "You can skip the rest if needed.",
+      },
+    ],
+  },
+  {
+    title: "STEP 2",
+    subtitle: "Shaping",
+    steps: [
+      {
+        text: "Divide the dough into 8 equal pieces, then shape into balls.",
+        smallText:
+          "The more round the balls are, the more circular the rotlis   will be.",
+      },
+      {
+        text: "Flatten each ball, dunk in rotli flour, and using plenty of flour on your board, roll out into a thin circle.",
+        smallText:
+          "The less pressure used here is better, to make sure they don’t become too thick.",
+      },
+    ],
+  },
+  {
+    title: "STEP 3",
+    subtitle: "Cooking",
+    steps: [
+      {
+        text: "Heat your tawa as high as it goes, and add a drop of oil.",
+      },
+      {
+        text: "Add the rotli to the tawa, and cook for 20 seconds on one side before flipping.",
+        smallText:
+          "The tawa should be hot enough that you only need to flip twice. If rolled evenly they will puff up and can be pressed down.",
+      },
+      {
+        text: "While each rotli cooks, roll out the next one.",
+      },
+      {
+        text: "Add a teaspoon of ghee to each finished rotli. Keep them under a teatowel to keep them soft while cooking the rest.",
       },
     ],
   },
