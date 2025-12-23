@@ -75,44 +75,29 @@ export default function ToastTimer({ time }: { time: number }) {
     setTimeAsPercent((newTimeLeft / totalDurationRef.current) * 100);
   }, [isRunning, play, clearTimerState]);
 
-  // Restore timer state on mount OR start new timer
+  // Start a new timer when time prop changes
+  // Note: We intentionally DON'T restore from localStorage here because
+  // each click on a timer button should start a fresh timer for that duration.
+  // The localStorage is only used to persist the current timer if the page is
+  // refreshed or the app is closed and reopened.
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try {
-        const state: TimerState = JSON.parse(saved);
-        const now = Date.now();
-        
-        if (state.endTime > now) {
-          // Timer was running and hasn't expired - restore it
-          const remaining = Math.ceil((state.endTime - now) / 1000);
-          setTimeLeft(remaining);
-          setTimeAsPercent((remaining / state.totalDuration) * 100);
-          endTimeRef.current = state.endTime;
-          totalDurationRef.current = state.totalDuration;
-          setIsRunning(true);
-          return;
-        } else {
-          // Timer expired while app was closed
-          setTimeLeft(0);
-          setTimeAsPercent(0);
-          clearTimerState();
-          play();
-          return;
-        }
-      } catch {
-        clearTimerState();
-      }
-    }
+    // Clear any existing saved state - user is starting a new timer
+    clearTimerState();
     
-    // No saved state or invalid - start fresh timer
+    // Start fresh timer with the new time
     setTimeLeft(time);
     setTimeAsPercent(100);
     totalDurationRef.current = time;
     endTimeRef.current = Date.now() + time * 1000;
     setIsRunning(true);
-    saveTimerState();
-  }, [time, clearTimerState, saveTimerState, play]);
+    
+    // Save the new timer state
+    const state: TimerState = {
+      endTime: Date.now() + time * 1000,
+      totalDuration: time,
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }, [time, clearTimerState]);
 
   // Main timer loop using setInterval with timestamp checking
   // setInterval continues running (though throttled) when tab is hidden

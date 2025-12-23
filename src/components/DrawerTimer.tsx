@@ -71,49 +71,15 @@ export default function DrawerTimer({ time }: { time: number }) {
     setTimeAsPercent((newTimeLeft / totalDurationRef.current) * 100);
   }, [isRunning, play, clearTimerState]);
 
-  // Restore timer state on mount
-  useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try {
-        const state: TimerState = JSON.parse(saved);
-        const now = Date.now();
-        
-        if (state.isPaused) {
-          // Timer was paused - restore paused state
-          setTimeLeft(state.remainingWhenPaused);
-          setTimeAsPercent((state.remainingWhenPaused / state.totalDuration) * 100);
-          totalDurationRef.current = state.totalDuration;
-          setIsRunning(false);
-        } else if (state.endTime > now) {
-          // Timer was running and hasn't expired
-          const remaining = Math.ceil((state.endTime - now) / 1000);
-          setTimeLeft(remaining);
-          setTimeAsPercent((remaining / state.totalDuration) * 100);
-          endTimeRef.current = state.endTime;
-          totalDurationRef.current = state.totalDuration;
-          setIsRunning(true);
-        } else {
-          // Timer expired while app was closed
-          setTimeLeft(0);
-          setTimeAsPercent(0);
-          clearTimerState();
-          play();
-        }
-      } catch {
-        clearTimerState();
-      }
-    }
-  }, []);
-
   // When time prop changes (new timer started)
+  // Always start fresh - no restore from localStorage for DrawerTimer
   useEffect(() => {
+    clearTimerState();
     setTimeLeft(time);
     setTimeAsPercent(100);
     setIsRunning(false);
     totalDurationRef.current = time;
     endTimeRef.current = 0;
-    clearTimerState();
     playExpand();
   }, [time, clearTimerState, playExpand]);
 
