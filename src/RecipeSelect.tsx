@@ -1,6 +1,11 @@
 import "./App.css";
 
-export type RecipeType = "normal-loaf" | "bread-rolls" | "focaccia" | "rotli";
+export type RecipeType =
+  | "normal-loaf"
+  | "bread-rolls"
+  | "focaccia"
+  | "rotli"
+  | "banana-bread";
 
 interface RecipeSelectProps {
   onSelect: (recipe: RecipeType) => void;
@@ -31,6 +36,11 @@ const recipeOptions: {
     label: "Rotli",
     enabled: true,
   },
+  {
+    value: "banana-bread",
+    label: "Banana Bread",
+    enabled: true,
+  },
 ];
 
 const RecipeSelect: React.FC<RecipeSelectProps> = ({ onSelect }) => {
@@ -44,7 +54,7 @@ const RecipeSelect: React.FC<RecipeSelectProps> = ({ onSelect }) => {
           Choose your recipe to get started.
         </p>
 
-        <div className="grid grid-cols-2 grid-rows-2 gap-4">
+        <div className="grid grid-cols-2 gap-4">
           {recipeOptions.map((option) => (
             <button
               key={option.value}

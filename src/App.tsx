@@ -15,6 +15,9 @@ function App() {
 
   // Calculate yeast amount based on temperature and recipe
   const getYeastAmount = () => {
+    if (selectedRecipe === "banana-bread") {
+      return 0;
+    }
     if (selectedRecipe === "focaccia") {
       return temperature === "cold" ? 12 : 10;
     }
@@ -30,9 +33,9 @@ function App() {
 
   const handleRecipeSelect = (recipe: RecipeType) => {
     setSelectedRecipe(recipe);
-    // Skip temperature selection for rotli
-    if (recipe === "rotli") {
-      setTemperature("normal"); // Set default temperature for rotli
+    // Skip temperature selection for recipes that don't use it
+    if (recipe === "rotli" || recipe === "banana-bread") {
+      setTemperature("normal");
       setStep(3); // Move directly to Intro
     } else {
       setStep(2); // Move to temperature select after choosing recipe
@@ -47,8 +50,11 @@ function App() {
   };
 
   const backClick = () => {
-    // If we're on Intro (step 3) and came from rotli (skipped temperature), go back to recipe select
-    if (step === 3 && selectedRecipe === "rotli") {
+    // If we're on Intro (step 3) and came from a recipe that skipped temperature, go back to recipe select
+    if (
+      step === 3 &&
+      (selectedRecipe === "rotli" || selectedRecipe === "banana-bread")
+    ) {
       setStep(1);
     } else {
       setStep(step - 1);

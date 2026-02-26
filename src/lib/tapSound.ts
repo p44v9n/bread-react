@@ -21,8 +21,3 @@ export function playTapSound() {
     // Ignore any construction errors
   }
 }
-
-
-
-
-

@@ -40,8 +40,11 @@ interface Section {
 
 const getRecipeSections = (
   yeastAmount: number,
-  recipeType: RecipeType | null | undefined
+  recipeType: RecipeType | null | undefined,
 ): Section[] => {
+  if (recipeType === "banana-bread") {
+    return getBananaBreadSections();
+  }
   if (recipeType === "focaccia") {
     return getFocacciaSections(yeastAmount);
   }
@@ -133,6 +136,37 @@ const getRecipeSections = (
     },
   ];
 };
+
+const getBananaBreadSections = (): Section[] => [
+  {
+    title: "STEP 1",
+    subtitle: "Mixing",
+    steps: [
+      {
+        text: "Mash 3–5 very ripe bananas (the blacker the better) in a large bowl until smooth.",
+      },
+      {
+        text: "Add the vegetable oil and sugar to the mashed bananas and mix until well combined.",
+      },
+      {
+        text: "Stir in the plain flour, baking powder and ground cinnamon until combined.",
+      },
+    ],
+  },
+  {
+    title: "STEP 2",
+    subtitle: "Baking",
+    steps: [
+      {
+        text: "Pour the batter into a lined loaf tin, cover loosely with foil to stop it browning, and bake for about 40 minutes, checking after 20 minutes.",
+        timer: 2400,
+      },
+      {
+        text: "Check that a skewer comes out clean to see if it's cooked through inside.",
+      },
+    ],
+  },
+];
 
 const getFocacciaSections = (yeastAmount: number): Section[] => [
   {
@@ -286,6 +320,8 @@ const Recipe: React.FC<RecipeProps> = ({
         return "Focaccia";
       case "rotli":
         return "Rotli";
+      case "banana-bread":
+        return "Banana Bread";
       default:
         return "Normal Loaf";
     }

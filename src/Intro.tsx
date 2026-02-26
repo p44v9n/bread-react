@@ -13,7 +13,7 @@ interface IntroProps {
 
 const getIngredientsSection = (
   recipeType: RecipeType | null | undefined,
-  yeastAmount: number
+  yeastAmount: number,
 ) => {
   if (recipeType === "focaccia") {
     return (
@@ -60,6 +60,36 @@ const getIngredientsSection = (
           <li className="text-xl text-twine-900">~50ml cooking oil</li>
           <li className="text-xl text-twine-900">60-90ml hot water</li>
           <li className="text-xl text-twine-900 mb-4">Ghee (for serving)</li>
+        </ul>
+      </div>
+    );
+  }
+
+  if (recipeType === "banana-bread") {
+    return (
+      <div>
+        <div className="flex flex-row gap-2 mb-4 mt-8">
+          <h2 className="text-twine-900 grow uppercase text-md tracking-wider">
+            Ingredients
+          </h2>
+          <hr className="bg-twine-600 text-twine-600 h-[0.1rem] w-full my-auto" />
+        </div>
+        <ul className="list-disc text-left ml-8 flex flex-col gap-2">
+          <li className="text-xl text-twine-900">
+            3–5 very ripe bananas (the blacker the better)
+          </li>
+          <li className="text-xl text-twine-900">For each banana:</li>
+          <li className="text-xl text-twine-900 ml-6">25ml vegetable oil</li>
+          <li className="text-xl text-twine-900 ml-6">75g plain flour</li>
+          <li className="text-xl text-twine-900 ml-6">1 tsp baking powder</li>
+          <li className="text-xl text-twine-900 ml-6">1 tsp ground cinnamon</li>
+          <li className="text-xl text-twine-900 ml-6 mb-4">
+            20–30g sugar
+            <br />
+            <span className="text-twine-600 text-sm">
+              20g if you like it less sweet, up to 30g if you want it sweeter
+            </span>
+          </li>
         </ul>
       </div>
     );
@@ -127,6 +157,24 @@ const getEquipmentSection = (recipeType: RecipeType | null | undefined) => {
     );
   }
 
+  if (recipeType === "banana-bread") {
+    return (
+      <div>
+        <div className="flex flex-row gap-2 mb-4 mt-8">
+          <h2 className="text-twine-900 grow uppercase text-md tracking-wider">
+            equipment
+          </h2>
+          <hr className="bg-twine-600 text-twine-600 h-[0.1rem] w-full my-auto" />
+        </div>
+        <ul className="list-disc text-left ml-8">
+          <li className="text-xl text-twine-900">A large mixing bowl</li>
+          <li className="text-xl text-twine-900">A loaf tin</li>
+          <li className="text-xl text-twine-900">Kitchen foil</li>
+        </ul>
+      </div>
+    );
+  }
+
   // Default: normal-loaf or bread-rolls
   return (
     <div>
@@ -168,6 +216,22 @@ const getNiceToHaveSection = (recipeType: RecipeType | null | undefined) => {
     );
   }
 
+  if (recipeType === "banana-bread") {
+    return (
+      <div>
+        <div className="flex flex-row gap-2 mb-4 mt-8">
+          <h2 className="text-twine-900 grow uppercase text-md tracking-wider">
+            nice&nbsp;to&nbsp;have
+          </h2>
+          <hr className="bg-twine-600 text-twine-600 h-[0.1rem] w-full my-auto" />
+        </div>
+        <ul className="list-disc text-left ml-8">
+          <li className="text-xl text-twine-900">A potato masher</li>
+        </ul>
+      </div>
+    );
+  }
+
   // Default for all other recipes
   return (
     <div>
@@ -199,6 +263,24 @@ const getInYaKitchenSection = (recipeType: RecipeType | null | undefined) => {
           <li className="text-xl text-twine-900">Hob</li>
           <li className="text-xl text-twine-900">Tea towel</li>
         </ul>
+      </div>
+    );
+  }
+
+  if (recipeType === "banana-bread") {
+    return (
+      <div>
+        <div>
+          <div className="flex flex-row gap-2 mb-4 mt-8">
+            <h2 className="text-twine-900 grow uppercase text-md tracking-wider">
+              in&nbsp;ya&nbsp;kitchen
+            </h2>
+            <hr className="bg-twine-600 text-twine-600 h-[0.1rem] grow-0 w-full my-auto" />
+          </div>
+          <ul className="list-disc text-left ml-8">
+            <li className="text-xl text-twine-900">An oven</li>
+          </ul>
+        </div>
       </div>
     );
   }
